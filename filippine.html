@@ -1,0 +1,857 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Filippine &mdash; ALTROVE</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Manrope:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#14181C;
+    --ink-2:#1B2126;
+    --ivory:#F3EFE6;
+    --ivory-dim: #C9C4B8;
+    --ochre:#C98A2C;
+    --ochre-dim:#8a611f;
+    --teal:#3E6E68;
+    --teal-light:#6FA79E;
+    --line: rgba(243,239,230,0.14);
+    --radius: 2px;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--ink);
+    color:var(--ivory);
+    font-family:'Manrope', sans-serif;
+    font-weight:400;
+    line-height:1.6;
+    overflow-x:hidden;
+  }
+  h1,h2,h3{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    letter-spacing:-0.01em;
+  }
+  .mono{
+    font-family:'IBM Plex Mono', monospace;
+    letter-spacing:0.04em;
+    text-transform:uppercase;
+  }
+  a{color:inherit; text-decoration:none;}
+  img{display:block; max-width:100%;}
+  .wrap{max-width:1180px; margin:0 auto; padding:0 32px;}
+
+  /* reveal on scroll */
+  .reveal{opacity:0; transform:translateY(24px); transition:opacity .8s ease, transform .8s ease;}
+  .reveal.in{opacity:1; transform:translateY(0);}
+
+  /* ---------- NAV ---------- */
+  header{
+    position:fixed; top:0; left:0; right:0; z-index:100;
+    padding:22px 0;
+    transition: background .4s ease, padding .4s ease, border-color .4s ease;
+    border-bottom:1px solid transparent;
+  }
+  header.solid{
+    background:rgba(20,24,28,0.92);
+    backdrop-filter:blur(8px);
+    padding:16px 0;
+    border-bottom:1px solid var(--line);
+  }
+  nav.wrap{display:flex; align-items:center; justify-content:space-between;}
+  .brand{font-family:'Fraunces', serif; font-size:1.35rem; font-weight:700; letter-spacing:0.01em;}
+  .brand em{font-style:italic; color:var(--ochre); font-weight:500;}
+  .navlinks{display:flex; gap:36px; font-size:0.82rem;}
+  .navlinks a{
+    font-family:'IBM Plex Mono', monospace;
+    text-transform:uppercase; letter-spacing:0.08em;
+    opacity:0.8; transition:opacity .2s ease, color .2s ease;
+    position:relative;
+  }
+  .navlinks a:hover{opacity:1; color:var(--ochre);}
+  @media(max-width:720px){ .navlinks{display:none;} }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative; height:100vh; min-height:640px;
+    display:flex; align-items:flex-end;
+    overflow:hidden;
+  }
+  .hero-img{
+    position:absolute; inset:0; width:100%; height:112%; object-fit:cover;
+    will-change:transform;
+  }
+  .hero::after{
+    content:''; position:absolute; inset:0;
+    background:linear-gradient(180deg, rgba(20,24,28,0.15) 0%, rgba(20,24,28,0.35) 55%, rgba(20,24,28,0.96) 100%);
+  }
+  .hero-content{position:relative; z-index:2; padding-bottom:76px; width:100%;}
+  .eyebrow{
+    font-size:0.78rem; color:var(--teal-light); margin-bottom:18px; display:flex; gap:14px; align-items:center;
+  }
+  .eyebrow::before{content:''; width:26px; height:1px; background:var(--teal-light); display:inline-block;}
+  .hero h1{
+    font-size:clamp(2.6rem, 7vw, 5.6rem);
+    line-height:0.98;
+    color:var(--ivory);
+    max-width:11ch;
+  }
+  .hero h1 .it{font-style:italic; font-weight:500; color:var(--ochre);}
+  .hero p{
+    max-width:420px; margin-top:22px; color:var(--ivory-dim); font-size:1.02rem;
+  }
+  .scroll-cue{
+    position:absolute; right:32px; bottom:36px; z-index:2;
+    writing-mode:vertical-rl; font-size:0.72rem; color:var(--ivory-dim);
+    display:flex; align-items:center; gap:10px;
+  }
+  .scroll-cue .bar{width:1px; height:46px; background:var(--ivory-dim); position:relative; overflow:hidden;}
+  .scroll-cue .bar::after{
+    content:''; position:absolute; top:0; left:0; width:100%; height:40%; background:var(--ochre);
+    animation:cue 2.2s ease-in-out infinite;
+  }
+  @keyframes cue{0%{transform:translateY(-100%)} 100%{transform:translateY(250%)}}
+
+  /* ---------- INTRO / MANIFESTO ---------- */
+  .manifesto{
+    padding:120px 0 100px;
+    border-bottom:1px solid var(--line);
+  }
+  .manifesto .wrap{display:grid; grid-template-columns:1fr 1.4fr; gap:60px;}
+  .manifesto .label{font-size:0.78rem; color:var(--ochre);}
+  .manifesto h2{
+    font-size:clamp(1.6rem,3vw,2.3rem); font-weight:500; font-style:italic; line-height:1.35; color:var(--ivory);
+  }
+  .coords{
+    margin-top:28px; display:flex; gap:26px; flex-wrap:wrap;
+  }
+  .coords div{font-size:0.72rem; color:var(--ivory-dim);}
+  .coords strong{display:block; color:var(--teal-light); font-size:0.95rem; margin-bottom:4px; font-family:'IBM Plex Mono', monospace;}
+  @media(max-width:820px){ .manifesto .wrap{grid-template-columns:1fr;} }
+
+  /* ---------- SECTION HEADS ---------- */
+  .section-head{
+    padding:100px 0 46px;
+    display:flex; justify-content:space-between; align-items:flex-end; gap:20px; flex-wrap:wrap;
+  }
+  .section-head .tag{font-size:0.78rem; color:var(--ochre); margin-bottom:14px; display:block;}
+  .section-head h2{font-size:clamp(2rem,4vw,3rem); color:var(--ivory);}
+  .section-head p{max-width:340px; color:var(--ivory-dim); font-size:0.95rem; padding-bottom:6px;}
+
+  /* ---------- STORIES (boarding pass cards) ---------- */
+  .stories{padding-bottom:60px;}
+  .story{
+    display:grid; grid-template-columns:1.1fr 1fr; gap:0;
+    border-top:1px solid var(--line);
+    position:relative;
+  }
+  .story:last-child{border-bottom:1px solid var(--line);}
+  .story-media{position:relative; overflow:hidden; min-height:420px;}
+  .story-media img{width:100%; height:100%; object-fit:cover; transition:transform .8s cubic-bezier(.2,.8,.2,1);}
+  .story:hover .story-media img{transform:scale(1.06);}
+  .story-body{
+    padding:56px 60px; display:flex; flex-direction:column; justify-content:center;
+    position:relative;
+  }
+  .story:nth-child(even){grid-template-columns:1fr 1.1fr;}
+  .story:nth-child(even) .story-media{order:2;}
+  .story:nth-child(even) .story-body{order:1;}
+
+  .pass-stub{
+    display:flex; align-items:center; gap:14px; margin-bottom:22px;
+  }
+  .pass-code{
+    font-family:'IBM Plex Mono', monospace; font-size:1.4rem; font-weight:500; color:var(--ochre);
+    border:1px dashed var(--ochre-dim); padding:6px 12px; border-radius:var(--radius);
+  }
+  .pass-route{font-size:0.72rem; color:var(--ivory-dim);}
+  .pass-route span{color:var(--teal-light);}
+
+  .story-body h3{font-size:1.9rem; color:var(--ivory); margin-bottom:14px; max-width:16ch;}
+  .story-body p{color:var(--ivory-dim); font-size:0.98rem; max-width:44ch; margin-bottom:24px;}
+  .story-meta{
+    display:flex; gap:22px; font-size:0.72rem; color:var(--ivory-dim); margin-bottom:24px;
+  }
+  .story-meta b{color:var(--ivory); font-weight:600;}
+  .read-more{
+    font-size:0.78rem; color:var(--teal-light); display:inline-flex; align-items:center; gap:8px;
+    width:fit-content; padding-bottom:2px; border-bottom:1px solid transparent; transition:border-color .2s ease, color .2s ease;
+  }
+  .read-more:hover{border-color:var(--teal-light); color:var(--ivory);}
+
+  @media(max-width:820px){
+    .story, .story:nth-child(even){grid-template-columns:1fr;}
+    .story:nth-child(even) .story-media, .story:nth-child(even) .story-body{order:unset;}
+    .story-media{min-height:280px;}
+    .story-body{padding:36px 26px;}
+  }
+
+  /* ---------- GUIDE ARTICLES (practical guides) ---------- */
+  .guide-article{padding:70px 0; border-top:1px solid var(--line);}
+  .guide-article:last-child{border-bottom:1px solid var(--line);}
+  .guide-head{
+    display:flex; justify-content:space-between; align-items:flex-end; gap:24px; flex-wrap:wrap;
+    margin-bottom:44px;
+  }
+  .guide-eyebrow{font-size:0.72rem; color:var(--ochre); margin-bottom:12px; display:block;}
+  .guide-head h3{font-size:clamp(2rem,4vw,2.8rem); color:var(--ivory); margin-bottom:8px;}
+  .guide-region{font-size:0.74rem; color:var(--teal-light); display:block;}
+  .guide-stats{display:flex; gap:32px; font-size:0.68rem; color:var(--ivory-dim);}
+  .guide-stats b{display:block; color:var(--ivory); font-size:1.05rem; font-family:'IBM Plex Mono',monospace; font-weight:500; margin-top:6px;}
+
+  .guide-grid{display:grid; grid-template-columns:1.6fr 1fr; gap:60px;}
+
+  .guide-section-title{
+    font-size:0.76rem; color:var(--ochre); display:block;
+    margin-bottom:26px; padding-bottom:12px; border-bottom:1px dashed var(--line);
+  }
+  .guide-side .guide-section-title{margin-top:6px;}
+  .guide-side > .guide-section-title:first-child{margin-top:0;}
+
+  .exp-item{display:flex; gap:18px; margin-bottom:30px;}
+  .exp-item:last-child{margin-bottom:0;}
+  .exp-index{font-family:'IBM Plex Mono', monospace; font-size:0.72rem; color:var(--ochre-dim); padding-top:5px; min-width:20px;}
+  .exp-item h4{font-size:1.15rem; color:var(--ivory); margin-bottom:8px; font-weight:600;}
+  .exp-item p{font-size:0.92rem; color:var(--ivory-dim); max-width:58ch; line-height:1.6;}
+
+  .guide-side{display:flex; flex-direction:column;}
+  .stay-card{border:1px solid var(--line); border-radius:var(--radius); padding:18px 20px; background:var(--ink-2);}
+  .stay-card + .stay-card{margin-top:14px;}
+  .stay-card h4{font-size:1rem; color:var(--ivory); margin-bottom:8px; font-weight:600;}
+  .stay-card p{font-size:0.84rem; color:var(--ivory-dim); line-height:1.55;}
+  .stay-list{margin-bottom:44px;}
+
+  .eat-list{display:flex; flex-direction:column; gap:16px; margin-bottom:44px;}
+  .eat-item h4{font-size:0.95rem; color:var(--ivory); margin-bottom:4px; font-weight:600;}
+  .eat-item p{font-size:0.84rem; color:var(--ivory-dim); line-height:1.5;}
+
+  .guide-quote{border-left:2px solid var(--ochre); padding-left:22px;}
+  .guide-quote p{font-family:'Fraunces', serif; font-style:italic; font-weight:500; font-size:1.12rem; color:var(--ivory); line-height:1.55;}
+
+  @media(max-width:900px){
+    .guide-grid{grid-template-columns:1fr;}
+  }
+
+  /* ---------- IMAGE SLOTS (placeholder da sostituire con foto vere) ---------- */
+  .img-slot{
+    border:1px dashed var(--ochre-dim); border-radius:var(--radius);
+    background:var(--ink-2);
+    display:flex; flex-direction:column; align-items:center; justify-content:center; gap:6px;
+    text-align:center; color:var(--ivory-dim);
+    font-family:'IBM Plex Mono', monospace; font-size:0.68rem; letter-spacing:0.04em;
+  }
+  .img-slot .slot-label{text-transform:uppercase; color:var(--ivory-dim); opacity:0.7;}
+  .img-slot .slot-file{color:var(--ochre); font-size:0.72rem;}
+  .img-slot.filled{border-style:solid; padding:0; overflow:hidden;}
+  .img-slot.filled img{width:100%; height:100%; object-fit:cover; display:block;}
+
+  .guide-cover{height:360px; margin-bottom:40px;}
+  .exp-photo{width:260px; height:150px; margin-top:14px; border-color:var(--line);}
+  .exp-photo .slot-file{color:var(--ivory-dim);}
+  .exp-photo .slot-label{font-size:0.62rem;}
+
+  @media(max-width:820px){
+    .guide-cover{height:220px;}
+  }
+
+  /* ---------- GALLERY ---------- */
+  .gallery{padding:20px 0 40px;}
+  .grid{
+    display:grid; grid-template-columns:repeat(6, 1fr); gap:14px;
+  }
+  .g-item{border-radius:var(--radius); overflow:hidden; position:relative; cursor:pointer;}
+  .g-item img{width:100%; height:100%; object-fit:cover; transition:transform .6s ease, filter .4s ease; filter:grayscale(0.15) brightness(0.92);}
+  .g-item:hover img{transform:scale(1.08); filter:grayscale(0) brightness(1);}
+  .g-item::after{
+    content: attr(data-cap); position:absolute; left:12px; bottom:12px; right:12px;
+    font-family:'IBM Plex Mono', monospace; font-size:0.68rem; color:var(--ivory);
+    text-transform:uppercase; letter-spacing:0.06em;
+    opacity:0; transform:translateY(6px); transition:opacity .3s ease, transform .3s ease;
+    text-shadow:0 2px 8px rgba(0,0,0,0.6);
+  }
+  .g-item:hover::after{opacity:1; transform:translateY(0);}
+  .g-item.a{grid-column:span 3; grid-row:span 2; aspect-ratio:1/1;}
+  .g-item.b{grid-column:span 2; aspect-ratio:1/1;}
+  .g-item.c{grid-column:span 1; aspect-ratio:1/2.05;}
+  .g-item.d{grid-column:span 3; aspect-ratio:16/8;}
+  .g-item.e{grid-column:span 2; aspect-ratio:1/1;}
+  .g-item.f{grid-column:span 1; aspect-ratio:1/2.05;}
+  @media(max-width:900px){
+    .grid{grid-template-columns:repeat(2,1fr);}
+    .g-item, .g-item.a, .g-item.b, .g-item.c, .g-item.d, .g-item.e, .g-item.f{grid-column:span 1; grid-row:span 1; aspect-ratio:1/1;}
+  }
+
+  /* ---------- GUIDES (luggage tags) ---------- */
+  .guides{padding:20px 0 100px;}
+  .tag-row{
+    display:flex; gap:22px; overflow-x:auto; padding:10px 4px 30px;
+    scrollbar-width:thin; scrollbar-color:var(--ochre-dim) transparent;
+  }
+  .tag-row::-webkit-scrollbar{height:6px;}
+  .tag-row::-webkit-scrollbar-thumb{background:var(--ochre-dim); border-radius:6px;}
+
+  .tag{
+    flex:0 0 300px;
+    background:var(--ink-2);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:0;
+    position:relative;
+    transition:transform .3s ease, border-color .3s ease;
+  }
+  .tag:hover{transform:translateY(-6px); border-color:var(--ochre-dim);}
+  .tag-hole{
+    position:absolute; top:22px; left:22px; width:14px; height:14px; border-radius:50%;
+    background:var(--ink); border:1px solid var(--line);
+  }
+  .tag-photo{height:150px; overflow:hidden;}
+  .tag-photo img{width:100%; height:100%; object-fit:cover;}
+  .tag-body{padding:22px 24px 26px;}
+  .tag-dest{font-size:1.3rem; color:var(--ivory); margin-bottom:4px;}
+  .tag-country{font-size:0.72rem; color:var(--teal-light); margin-bottom:16px;}
+  .tag-divider{border-top:1px dashed var(--line); margin:14px 0;}
+  .tag-stats{display:flex; justify-content:space-between; font-size:0.68rem; color:var(--ivory-dim); margin-bottom:14px;}
+  .tag-stats b{display:block; color:var(--ivory); font-size:0.95rem; font-family:'IBM Plex Mono',monospace; font-weight:500;}
+  .tag-tip{font-size:0.85rem; color:var(--ivory-dim); line-height:1.5;}
+  .tag-tip b{color:var(--ochre); font-style:normal; font-weight:600;}
+
+  /* ---------- NEWSLETTER / FOOTER ---------- */
+  .cta{
+    padding:110px 0; text-align:center; border-top:1px solid var(--line); position:relative; overflow:hidden;
+  }
+  .cta h2{font-size:clamp(2rem,5vw,3.4rem); max-width:14ch; margin:0 auto 26px; color:var(--ivory);}
+  .cta h2 em{font-style:italic; color:var(--ochre); font-weight:500;}
+  .cta p{color:var(--ivory-dim); max-width:440px; margin:0 auto 40px;}
+  .form-row{display:flex; justify-content:center; gap:0; max-width:440px; margin:0 auto;}
+  .form-row input{
+    flex:1; background:transparent; border:1px solid var(--line); border-right:none;
+    padding:16px 18px; color:var(--ivory); font-family:'Manrope', sans-serif; font-size:0.9rem;
+    border-radius:var(--radius) 0 0 var(--radius);
+  }
+  .form-row input:focus{outline:2px solid var(--ochre); outline-offset:-2px;}
+  .form-row input::placeholder{color:var(--ivory-dim);}
+  .form-row button{
+    background:var(--ochre); color:var(--ink); border:none; padding:0 26px;
+    font-family:'IBM Plex Mono', monospace; font-size:0.78rem; text-transform:uppercase; letter-spacing:0.06em;
+    cursor:pointer; border-radius:0 var(--radius) var(--radius) 0; transition:background .2s ease;
+  }
+  .form-row button:hover{background:var(--teal-light);}
+  .form-note{margin-top:16px; font-size:0.7rem; color:var(--ivory-dim);}
+
+  footer{
+    border-top:1px solid var(--line); padding:50px 0 40px;
+  }
+  footer .wrap{display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:20px;}
+  .foot-brand{font-family:'Fraunces', serif; font-size:1.1rem;}
+  .foot-links{display:flex; gap:26px; font-size:0.75rem; color:var(--ivory-dim);}
+  .foot-links a:hover{color:var(--ochre);}
+  .foot-coords{font-family:'IBM Plex Mono', monospace; font-size:0.68rem; color:var(--ivory-dim);}
+
+  /* ---------- HOME: TRIP TEASER ---------- */
+  .teaser{padding-bottom:40px;}
+  .teaser-grid{
+    display:grid; grid-template-columns:repeat(3, 1fr); gap:26px;
+  }
+  .teaser-card{
+    position:relative; border-radius:var(--radius); overflow:hidden;
+    aspect-ratio:4/5; display:flex; align-items:flex-end;
+    transition:transform .4s ease;
+  }
+  .teaser-card:hover{transform:translateY(-6px);}
+  .teaser-card img{
+    position:absolute; inset:0; width:100%; height:100%; object-fit:cover;
+    transition:transform .6s ease;
+  }
+  .teaser-card:hover img{transform:scale(1.07);}
+  .teaser-card::before{
+    content:''; position:absolute; inset:0;
+    background:linear-gradient(180deg, rgba(20,24,28,0) 30%, rgba(20,24,28,0.92) 100%);
+  }
+  .teaser-content{position:relative; z-index:2; padding:26px 24px;}
+  .teaser-code{
+    font-family:'IBM Plex Mono', monospace; font-size:0.72rem; color:var(--ochre);
+    letter-spacing:0.08em; text-transform:uppercase; margin-bottom:10px; display:block;
+  }
+  .teaser-content h3{font-size:1.4rem; color:var(--ivory); margin-bottom:8px;}
+  .teaser-content p{font-size:0.85rem; color:var(--ivory-dim); margin-bottom:14px; max-width:32ch;}
+  .teaser-link{font-size:0.74rem; color:var(--teal-light); border-bottom:1px solid transparent; transition:border-color .2s ease, color .2s ease;}
+  .teaser-card:hover .teaser-link{border-color:var(--teal-light); color:var(--ivory);}
+  .teaser-cta{
+    text-align:center; margin-top:44px;
+  }
+  .btn-outline{
+    display:inline-flex; align-items:center; gap:10px;
+    border:1px solid var(--line); padding:14px 30px;
+    font-family:'IBM Plex Mono', monospace; font-size:0.78rem; text-transform:uppercase; letter-spacing:0.06em;
+    color:var(--ivory); border-radius:var(--radius); transition:border-color .2s ease, color .2s ease, background .2s ease;
+  }
+  .btn-outline:hover{border-color:var(--ochre); color:var(--ochre); background:rgba(201,138,44,0.06);}
+  @media(max-width:820px){ .teaser-grid{grid-template-columns:1fr;} }
+
+  /* ---------- SUB-PAGE HEADER (no full hero photo) ---------- */
+  .page-head{
+    padding:190px 0 60px;
+    border-bottom:1px solid var(--line);
+  }
+  .page-head .eyebrow{margin-bottom:20px;}
+  .page-head h1{
+    font-size:clamp(2.4rem, 6vw, 4.2rem); color:var(--ivory); max-width:16ch; line-height:1.02;
+  }
+  .page-head h1 .it{font-style:italic; font-weight:500; color:var(--ochre);}
+  .page-head p{max-width:480px; margin-top:22px; color:var(--ivory-dim); font-size:1rem;}
+
+  /* ---------- TRIP GROUP (used on viaggi page) ---------- */
+  .trip-group-head{
+    padding:70px 0 10px;
+    display:flex; align-items:baseline; gap:20px; flex-wrap:wrap;
+  }
+  .trip-group-head h2{font-size:clamp(1.6rem,3vw,2.2rem); color:var(--ivory);}
+  .trip-group-head .trip-dates{
+    font-family:'IBM Plex Mono', monospace; font-size:0.78rem; color:var(--teal-light);
+    padding-bottom:4px;
+  }
+  .trip-group-line{height:1px; background:var(--line); flex:1; min-width:60px;}
+</style>
+<body>
+
+<header id="siteHeader" class="solid">
+  <nav class="wrap">
+    <a href="index.html#top" class="brand">ALTR<em>o</em>VE</a>
+    <div class="navlinks">
+      <a href="viaggi.html">Viaggi</a>
+      <a href="mappa.html">Mappa</a>
+      <a href="index.html#scatti">Scatti</a>
+      <a href="index.html#guide">Guide</a>
+    </div>
+  </nav>
+</header>
+
+<section class="page-head">
+  <div class="wrap">
+    <div class="eyebrow mono"><a href="viaggi.html" style="color:inherit;">&larr; Tutti i viaggi</a></div>
+    <h1>Filippine</h1>
+    <p>Tre isole, un unico filo conduttore: mare, cultura e qualche imprevisto. 3 guide pratiche, isola per isola.</p>
+  </div>
+</section>
+
+<section id="filippine">
+  <div class="wrap">
+
+    <article class="guide-article reveal" id="coron">
+      <div class="img-slot guide-cover filled">
+        <img src="images/coron-cover.jpg" alt="Laguna turchese tra le pareti calcaree di Coron, vista dall'alto, con le barche ormeggiate lungo il molo">
+      </div>
+      <div class="guide-head">
+        <div>
+          <span class="guide-eyebrow mono">Guida pratica &middot; 01</span>
+          <h3>Coron</h3>
+          <span class="guide-region mono">Filippine &middot; Palawan</span>
+        </div>
+        <div class="guide-stats">
+          <div>Durata<b>5 giorni</b></div>
+          <div>Budget<b>&euro;&euro;&#9675;</b></div>
+          <div>Periodo<b>Nov / Mag</b></div>
+        </div>
+      </div>
+
+      <div class="guide-grid">
+        <div class="guide-main">
+          <span class="guide-section-title mono">Cosa vedere</span>
+
+          <div class="exp-item">
+            <span class="exp-index mono">01</span>
+            <div>
+              <h4>Super Ultimate Tour</h4>
+              <p>L'escursione pi&ugrave; completa per scoprire Coron in una giornata: la CYC Beach per iniziare tra stelle marine e primi coralli, il Coral Garden per lo snorkeling, lo Skeleton Shipwreck &mdash; un relitto giapponese della Seconda Guerra Mondiale &mdash; la Twin Lagoon con le sue pareti rocciose, il Barracuda Lake dove acqua dolce e salata si incontrano, e infine il Kayangan Lake: probabilmente il luogo pi&ugrave; famoso di Coron, con uno dei punti panoramici pi&ugrave; fotografati delle Filippine.</p>
+              <div class="img-slot exp-photo">
+                <span class="slot-label">Foto</span>
+                <span class="slot-file">coron-super-ultimate.jpg</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="exp-item">
+            <span class="exp-index mono">02</span>
+            <div>
+              <h4>Kayak tra le lagune</h4>
+              <p>Partendo dalle Paolyn Houseboats si raggiungono zone pi&ugrave; tranquille in autonomia: mangrovie da attraversare, piccole spiagge nascoste e snorkeling lontano dalle barche dei tour organizzati.</p>
+              <div class="img-slot exp-photo">
+                <span class="slot-label">Foto</span>
+                <span class="slot-file">coron-kayak-tra-le-lagune.jpg</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="exp-item">
+            <span class="exp-index mono">03</span>
+            <div>
+              <h4>Coron Town e la vita locale</h4>
+              <p>Oltre alle escursioni in mare, vale la pena dedicare qualche ora al centro: villaggi di pescatori, mercati locali e piccoli ristoranti raccontano un lato pi&ugrave; autentico dell'isola.</p>
+              <div class="img-slot exp-photo">
+                <span class="slot-label">Foto</span>
+                <span class="slot-file">coron-town.jpg</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="exp-item">
+            <span class="exp-index mono">04</span>
+            <div>
+              <h4>Tramonti e relax a Busuanga</h4>
+              <p>La zona di Busuanga, dove si trova l'Al Faro Cosmio Hotel, offre un'atmosfera diversa rispetto al centro: baie tranquille, mangrovie, mare aperto e tramonti spettacolari sulla costa.</p>
+              <div class="img-slot exp-photo">
+                <span class="slot-label">Foto</span>
+                <span class="slot-file">coron-busuanga.jpg</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="guide-side">
+          <div class="stay-list">
+            <span class="guide-section-title mono">Dove dormire</span>
+            <div class="stay-card">
+              <h4>The Ridge Coron</h4>
+              <p>Comoda vicino a Coron Town, buon punto di partenza per porto e ristoranti del centro.</p>
+            </div>
+            <div class="stay-card">
+              <h4>Paolyn Houseboats</h4>
+              <p>Palafitte galleggianti immerse nella laguna, con terrazza privata sull'acqua e kayak personale. Una delle esperienze pi&ugrave; memorabili dell'isola.</p>
+            </div>
+            <div class="stay-card">
+              <h4>Al Faro Cosmio Hotel</h4>
+              <p>Piccolo resort costruito attorno a un faro, a Busuanga: vista sull'oceano, piscina panoramica e un trasferimento in barca tra le mangrovie che fa gi&agrave; parte dell'esperienza.</p>
+            </div>
+          </div>
+
+          <div class="eat-list">
+            <span class="guide-section-title mono">Dove mangiare</span>
+            <div class="eat-item">
+              <h4>Al Fresco</h4>
+              <p>Locale informale a Coron Town, ottimo per piatti locali e una San Miguel Pilsen.</p>
+            </div>
+            <div class="eat-item">
+              <h4>La Terrasse</h4>
+              <p>Cena tranquilla dopo le escursioni, piatti di pesce e cucina internazionale.</p>
+            </div>
+            <div class="eat-item">
+              <h4>La Playa</h4>
+              <p>Vicino al mare, perfetto per una cena rilassata dopo il rientro dai tour in barca.</p>
+            </div>
+          </div>
+
+          <div class="guide-quote">
+            <p>Snorkeling tra coralli e relitti, lagune nascoste, laghi spettacolari e soggiorni immersi nella natura: Coron racchiude molte delle esperienze pi&ugrave; belle delle Filippine.</p>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <article class="guide-article reveal" id="siargao">
+      <div class="img-slot guide-cover">
+        <span class="slot-label">Immagine da inserire</span>
+        <span class="slot-file">siargao-cover.jpg</span>
+      </div>
+      <div class="guide-head">
+        <div>
+          <span class="guide-eyebrow mono">Guida pratica &middot; 02</span>
+          <h3>Siargao</h3>
+          <span class="guide-region mono">Filippine &middot; Mindanao</span>
+        </div>
+        <div class="guide-stats">
+          <div>Durata<b>6 giorni</b></div>
+          <div>Budget<b>&euro;&#9675;&#9675;</b></div>
+          <div>Periodo<b>Ago / Nov</b></div>
+        </div>
+      </div>
+
+      <div class="guide-grid">
+        <div class="guide-main">
+          <span class="guide-section-title mono">Cosa vedere</span>
+
+          <div class="exp-item">
+            <span class="exp-index mono">01</span>
+            <div>
+              <h4>Island hopping: Naked, Daku e Guyam</h4>
+              <p>Il classico tour davanti a General Luna: Naked Island, un banco di sabbia bianca senza alberi n&eacute; costruzioni; Daku Island, la pi&ugrave; grande, con una comunit&agrave; locale ed &egrave; la tappa del pranzo; Guyam Island, un fazzoletto di palme perfetto per rilassarsi prima del rientro.</p>
+              <div class="img-slot exp-photo">
+                <span class="slot-label">Foto</span>
+                <span class="slot-file">siargao-island-hopping.jpg</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="exp-item">
+            <span class="exp-index mono">02</span>
+            <div>
+              <h4>Corregidor Island</h4>
+              <p>Per chi vuole unire mare e trekking: un sentiero porta fino alla parte alta dell'isola, tra vegetazione tropicale e fiori, con una vista spettacolare sull'oceano e le isole circostanti dalla cima.</p>
+              <div class="img-slot exp-photo">
+                <span class="slot-label">Foto</span>
+                <span class="slot-file">siargao-corregidor-island.jpg</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="exp-item">
+            <span class="exp-index mono">03</span>
+            <div>
+              <h4>Magpupungko Rock Pools</h4>
+              <p>Durante la bassa marea emerge un'area rocciosa con piscine naturali di acqua verde e cristallina, tra stelle marine e granchi. Da visitare proprio quando la marea &egrave; bassa.</p>
+              <div class="img-slot exp-photo">
+                <span class="slot-label">Foto</span>
+                <span class="slot-file">siargao-magpupungko-rock-pools.jpg</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="exp-item">
+            <span class="exp-index mono">04</span>
+            <div>
+              <h4>Surf a Siargao</h4>
+              <p>La capitale del surf delle Filippine, con Cloud 9 tra gli spot pi&ugrave; famosi del Sud-est asiatico. Scuole e istruttori ovunque, anche per chi parte da zero.</p>
+              <div class="img-slot exp-photo">
+                <span class="slot-label">Foto</span>
+                <span class="slot-file">siargao-surf-a-siargao.jpg</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="exp-item">
+            <span class="exp-index mono">05</span>
+            <div>
+              <h4>Cloud 9 e tramonto sul mare</h4>
+              <p>Dalla passerella si osservano i surfisti di giorno e il tramonto sull'oceano nel tardo pomeriggio &mdash; una delle atmosfere pi&ugrave; suggestive dell'isola.</p>
+              <div class="img-slot exp-photo">
+                <span class="slot-label">Foto</span>
+                <span class="slot-file">siargao-cloud-9-e-tramonto-sul-mare.jpg</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="exp-item">
+            <span class="exp-index mono">06</span>
+            <div>
+              <h4>Coconut Road</h4>
+              <p>Esplorare l'isola in motorino tra villaggi locali, campi agricoli e immense piantagioni di cocco: alcuni degli scorci pi&ugrave; fotografati di Siargao.</p>
+              <div class="img-slot exp-photo">
+                <span class="slot-label">Foto</span>
+                <span class="slot-file">siargao-coconut-road.jpg</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="guide-side">
+          <div class="stay-list">
+            <span class="guide-section-title mono">Dove dormire</span>
+            <div class="stay-card">
+              <h4>Yapak Beach Villas</h4>
+              <p>Zona nord dell'isola, pi&ugrave; tranquilla della vivace General Luna, vicina alle spiagge del nord e alle Magpupungko Rock Pools.</p>
+            </div>
+            <div class="stay-card">
+              <h4>Siargao Island Villas</h4>
+              <p>Vicina a General Luna, con piscina, palestra, biliardo, ping pong e campi da padel: comoda per ristoranti, locali e Cloud 9.</p>
+            </div>
+          </div>
+
+          <div class="eat-list">
+            <span class="guide-section-title mono">Dove mangiare</span>
+            <div class="eat-item">
+              <h4>XPizza</h4>
+              <p>Una delle migliori pizze dell'isola, perfetta dopo una giornata di mare.</p>
+            </div>
+            <div class="eat-item">
+              <h4>Ristoranti di General Luna</h4>
+              <p>La zona con pi&ugrave; scelta: cucina filippina, internazionale e proposte per ogni gusto.</p>
+            </div>
+            <div class="eat-item">
+              <h4>Street food in motorino</h4>
+              <p>Girando l'isola si trovano bancarelle e locali semplici per un'esperienza pi&ugrave; autentica.</p>
+            </div>
+          </div>
+
+          <div class="guide-quote">
+            <p>Surf, island hopping, piscine naturali e strade infinite tra le palme: Siargao &egrave; l'equilibrio perfetto tra avventura e relax.</p>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <article class="guide-article reveal" id="panglao-bohol">
+      <div class="img-slot guide-cover">
+        <span class="slot-label">Immagine da inserire</span>
+        <span class="slot-file">panglao-bohol-cover.jpg</span>
+      </div>
+      <div class="guide-head">
+        <div>
+          <span class="guide-eyebrow mono">Guida pratica &middot; 03</span>
+          <h3>Panglao e Bohol</h3>
+          <span class="guide-region mono">Filippine &middot; Visayas</span>
+        </div>
+        <div class="guide-stats">
+          <div>Durata<b>6 giorni</b></div>
+          <div>Budget<b>&euro;&euro;&#9675;</b></div>
+          <div>Periodo<b>Dic / Mag</b></div>
+        </div>
+      </div>
+
+      <div class="guide-grid">
+        <div class="guide-main">
+          <span class="guide-section-title mono">Cosa vedere</span>
+
+          <div class="exp-item">
+            <span class="exp-index mono">01</span>
+            <div>
+              <h4>Island hopping: Balicasag e Virgin Island</h4>
+              <p>Da Panglao, Virgin Island mostra una lingua di sabbia bianca che emerge con la bassa marea. Balicasag &egrave; tra le migliori destinazioni delle Filippine per lo snorkeling: al Turtle Point si nuota vicino a grandi tartarughe marine, al Fish Sanctuary una parete sottomarina scende nel blu tra coralli e banchi di pesci tropicali.</p>
+              <div class="img-slot exp-photo">
+                <span class="slot-label">Foto</span>
+                <span class="slot-file">panglao-bohol-island-hopping.jpg</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="exp-item">
+            <span class="exp-index mono">02</span>
+            <div>
+              <h4>Alona Beach</h4>
+              <p>Il centro della vita turistica di Panglao: di giorno spiaggia perfetta per rilassarsi, di sera il punto pi&ugrave; vivace dell'isola tra ristoranti, locali sulla sabbia e musica dal vivo.</p>
+              <div class="img-slot exp-photo">
+                <span class="slot-label">Foto</span>
+                <span class="slot-file">panglao-bohol-alona-beach.jpg</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="exp-item">
+            <span class="exp-index mono">03</span>
+            <div>
+              <h4>Loboc River, di giorno e di notte</h4>
+              <p>Nell'entroterra di Bohol, il fiume si esplora in kayak tra vegetazione e acqua calma. Al calare del buio, l'escursione serale per osservare le lucciole illumina gli alberi lungo le rive: un'atmosfera completamente diversa dalle attivit&agrave; diurne.</p>
+              <div class="img-slot exp-photo">
+                <span class="slot-label">Foto</span>
+                <span class="slot-file">bohol-loboc-river.jpg</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="exp-item">
+            <span class="exp-index mono">04</span>
+            <div>
+              <h4>Tarsier Sanctuary</h4>
+              <p>Il tarsio filippino, minuscolo e dagli occhi enormi, &egrave; uno degli animali simbolo dell'arcipelago: qui si osserva nel suo ambiente naturale, nascosto tra la vegetazione.</p>
+              <div class="img-slot exp-photo">
+                <span class="slot-label">Foto</span>
+                <span class="slot-file">panglao-bohol-tarsier-sanctuary.jpg</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="exp-item">
+            <span class="exp-index mono">05</span>
+            <div>
+              <h4>Chocolate Hills</h4>
+              <p>Il simbolo di Bohol: centinaia di colline arrotondate che nella stagione secca diventano marroni. Si raggiungono in motorino, tra strade panoramiche e piccoli villaggi.</p>
+              <div class="img-slot exp-photo">
+                <span class="slot-label">Foto</span>
+                <span class="slot-file">panglao-bohol-chocolate-hills.jpg</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="guide-side">
+          <div class="stay-list">
+            <span class="guide-section-title mono">Dove dormire</span>
+            <div class="stay-card">
+              <h4>Pineale Resort Villas &mdash; Panglao</h4>
+              <p>Appartamenti indipendenti con piscina e jacuzzi private, ad Alona Beach in tuk tuk ma in un ambiente pi&ugrave; tranquillo.</p>
+            </div>
+            <div class="stay-card">
+              <h4>Loboc River Resort &mdash; Bohol</h4>
+              <p>Direttamente sulle rive del fiume, lontano dal caos delle localit&agrave; balneari: perfetto per kayak e lucciole a pochi passi dall'alloggio.</p>
+            </div>
+          </div>
+
+          <div class="eat-list">
+            <span class="guide-section-title mono">Dove mangiare</span>
+            <div class="eat-item">
+              <h4>Oasis Resort &mdash; Alona Beach</h4>
+              <p>Direttamente sulla spiaggia, cucina asiatica e internazionale per una cena vista mare.</p>
+            </div>
+            <div class="eat-item">
+              <h4>Ristoranti di Alona Beach</h4>
+              <p>La maggior scelta gastronomica della zona, con locali sulla spiaggia per il tramonto.</p>
+            </div>
+            <div class="eat-item">
+              <h4>Ristoranti lungo il Loboc River</h4>
+              <p>Cucina locale con vista sul fiume, in un'atmosfera pi&ugrave; tranquilla rispetto a Panglao.</p>
+            </div>
+          </div>
+
+          <div class="guide-quote">
+            <p>Dal blu dell'oceano di Panglao al verde della foresta di Bohol: due facce delle Filippine in un'unica tappa, tra le pi&ugrave; complete del viaggio.</p>
+          </div>
+        </div>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<footer style="margin-top:60px;">
+  <div class="wrap">
+    <div class="foot-brand">ALTR<em style="color:var(--ochre); font-style:italic;">o</em>VE</div>
+    <div class="foot-links">
+      <a href="viaggi.html">Viaggi</a>
+      <a href="mappa.html">Mappa</a>
+      <a href="index.html#scatti">Scatti</a>
+      <a href="index.html#guide">Guide</a>
+    </div>
+    <div class="foot-coords">&copy; 2026 Altrove &mdash; scritto da chi non sta mai fermo</div>
+  </div>
+</footer>
+
+<script>
+  // Header solidifies on scroll (only relevant on pages with a full-bleed hero)
+  const header = document.getElementById('siteHeader');
+  const heroImg = document.getElementById('heroImg');
+  if(heroImg){
+    window.addEventListener('scroll', () => {
+      header.classList.toggle('solid', window.scrollY > 40);
+    });
+  }
+
+  // Subtle hero parallax (only on pages that have a hero image)
+  if(heroImg){
+    window.addEventListener('scroll', () => {
+      const y = window.scrollY;
+      if(y < window.innerHeight){
+        heroImg.style.transform = `translateY(${y * 0.18}px)`;
+      }
+    });
+  }
+
+  // Reveal on scroll
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting){
+        entry.target.classList.add('in');
+        io.unobserve(entry.target);
+      }
+    });
+  }, {threshold:0.12});
+  revealEls.forEach(el => io.observe(el));
+
+  // Respect reduced motion
+  if(window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+    revealEls.forEach(el => el.classList.add('in'));
+  }
+</script>
+</body>
+</html>
