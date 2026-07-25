@@ -62,7 +62,7 @@
     border-bottom:1px solid var(--line);
   }
   nav.wrap{display:flex; align-items:center; justify-content:space-between;}
-  .brand{font-family:'Fraunces', serif; font-size:1.35rem; font-weight:700; letter-spacing:0.01em;}
+  .brand{font-family:'Fraunces', serif; font-style:italic; font-size:1.4rem; font-weight:500; letter-spacing:0.01em; color:var(--teal-light);}
   .brand em{font-style:italic; color:var(--ochre); font-weight:500;}
   .navlinks{display:flex; gap:36px; font-size:0.82rem;}
   .navlinks a{
@@ -327,7 +327,7 @@
     border-top:1px solid var(--line); padding:50px 0 40px;
   }
   footer .wrap{display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:20px;}
-  .foot-brand{font-family:'Fraunces', serif; font-size:1.1rem;}
+  .foot-brand{font-family:'Fraunces', serif; font-style:italic; font-size:1.15rem; font-weight:500; color:var(--teal-light);}
   .foot-links{display:flex; gap:26px; font-size:0.75rem; color:var(--ivory-dim);}
   .foot-links a:hover{color:var(--ochre);}
   .foot-coords{font-family:'IBM Plex Mono', monospace; font-size:0.68rem; color:var(--ivory-dim);}
@@ -405,12 +405,13 @@
 
 <header id="siteHeader" class="solid">
   <nav class="wrap">
-    <a href="index.html#top" class="brand">ALTR<em>o</em>VE</a>
+    <a href="index.html#top" class="brand">ALTROVE</a>
     <div class="navlinks">
       <a href="viaggi.html">Viaggi</a>
       <a href="mappa.html">Mappa</a>
+      <a href="diario.html">Diario</a>
       <a href="index.html#scatti">Scatti</a>
-      <a href="index.html#guide">Guide</a>
+      <a href="index.html#guide">Numeri</a>
     </div>
   </nav>
 </header>
@@ -430,6 +431,44 @@
   <div class="wrap reveal">
     <div class="trip-card-grid">
 
+      <a class="trip-card" href="tenerife.html">
+        <div class="trip-card-photo">
+          <div class="img-slot">
+            <span class="slot-label">Immagine da inserire</span>
+            <span class="slot-file">tenerife-cover.jpg</span>
+          </div>
+        </div>
+        <div class="trip-card-body">
+          <div class="trip-card-dest">Tenerife</div>
+          <span class="trip-card-region mono">Isole Canarie</span>
+          <div class="trip-card-divider"></div>
+          <div class="trip-card-stats">
+            <div>Notti<b>7</b></div>
+            <div>Periodo<b>6&ndash;13 Ago 2019</b></div>
+            <div>Tappe<b>1</b></div>
+          </div>
+        </div>
+      </a>
+
+      <a class="trip-card" href="lanzarote.html">
+        <div class="trip-card-photo">
+          <div class="img-slot">
+            <span class="slot-label">Immagine da inserire</span>
+            <span class="slot-file">lanzarote-cover.jpg</span>
+          </div>
+        </div>
+        <div class="trip-card-body">
+          <div class="trip-card-dest">Lanzarote</div>
+          <span class="trip-card-region mono">Isole Canarie</span>
+          <div class="trip-card-divider"></div>
+          <div class="trip-card-stats">
+            <div>Notti<b>6</b></div>
+            <div>Periodo<b>12&ndash;18 Nov 2022</b></div>
+            <div>Tappe<b>1</b></div>
+          </div>
+        </div>
+      </a>
+
       <a class="trip-card" href="francia.html">
         <div class="trip-card-photo">
           <div class="img-slot">
@@ -442,9 +481,28 @@
           <span class="trip-card-region mono">Lione &middot; Loira &middot; Digione</span>
           <div class="trip-card-divider"></div>
           <div class="trip-card-stats">
-            <div>Guide<b>04</b></div>
+            <div>Notti<b>8</b></div>
             <div>Periodo<b>8&ndash;16 Ago 2024</b></div>
             <div>Tappe<b>4</b></div>
+          </div>
+        </div>
+      </a>
+
+      <a class="trip-card" href="belgio.html">
+        <div class="trip-card-photo">
+          <div class="img-slot">
+            <span class="slot-label">Immagine da inserire</span>
+            <span class="slot-file">belgio-cover.jpg</span>
+          </div>
+        </div>
+        <div class="trip-card-body">
+          <div class="trip-card-dest">Belgio</div>
+          <span class="trip-card-region mono">Bruxelles &middot; Bruges</span>
+          <div class="trip-card-divider"></div>
+          <div class="trip-card-stats">
+            <div>Notti<b>3</b></div>
+            <div>Periodo<b>28 Feb&ndash;3 Mar 2025</b></div>
+            <div>Tappe<b>2</b></div>
           </div>
         </div>
       </a>
@@ -458,7 +516,7 @@
           <span class="trip-card-region mono">Coron &middot; Siargao &middot; Panglao/Bohol</span>
           <div class="trip-card-divider"></div>
           <div class="trip-card-stats">
-            <div>Guide<b>03</b></div>
+            <div>Notti<b>17</b></div>
             <div>Periodo<b>23 Apr&ndash;10 Mag 2026</b></div>
             <div>Isole<b>3</b></div>
           </div>
@@ -478,12 +536,13 @@
 
 <footer style="margin-top:60px;">
   <div class="wrap">
-    <div class="foot-brand">ALTR<em style="color:var(--ochre); font-style:italic;">o</em>VE</div>
+    <div class="foot-brand">ALTROVE</div>
     <div class="foot-links">
       <a href="viaggi.html">Viaggi</a>
       <a href="mappa.html">Mappa</a>
+      <a href="diario.html">Diario</a>
       <a href="index.html#scatti">Scatti</a>
-      <a href="index.html#guide">Guide</a>
+      <a href="index.html#guide">Numeri</a>
     </div>
     <div class="foot-coords">&copy; 2026 Altrove &mdash; scritto da chi non sta mai fermo</div>
   </div>

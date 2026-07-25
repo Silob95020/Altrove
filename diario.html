@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Francia &mdash; ALTROVE</title>
+<title>Diario di bordo &mdash; ALTROVE</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Manrope:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -257,6 +257,40 @@
     .guide-cover{height:220px;}
   }
 
+  /* ---------- TIMELINE (diario di bordo cronologico) ---------- */
+  .timeline-section{padding:10px 0 100px;}
+  .timeline-wrap{position:relative; padding-left:56px; max-width:720px;}
+  .timeline-line{position:absolute; left:18px; top:6px; bottom:40px; width:1px; background:var(--line);}
+  .timeline-entry{position:relative; padding-bottom:70px;}
+  .timeline-entry:last-child{padding-bottom:0;}
+  .timeline-dot{
+    position:absolute; left:-45px; top:6px; width:13px; height:13px; border-radius:50%;
+    background:var(--ink-2); border:2px solid var(--ochre);
+  }
+  .timeline-dot.upcoming{border-color:var(--teal-light); background:transparent;}
+  .timeline-date{font-size:0.72rem; color:var(--teal-light); display:block; margin-bottom:10px;}
+  .timeline-entry h3{font-size:1.7rem; color:var(--ivory); margin-bottom:4px;}
+  .timeline-region{font-size:0.74rem; color:var(--ivory-dim); display:block; margin-bottom:18px;}
+  .timeline-stops{list-style:none; display:flex; flex-wrap:wrap; gap:10px; margin-bottom:18px;}
+  .timeline-stops li{
+    font-family:'IBM Plex Mono', monospace; font-size:0.68rem; color:var(--ivory);
+    border:1px dashed var(--line); padding:4px 10px; border-radius:var(--radius);
+  }
+  .timeline-note{color:var(--ivory-dim); font-size:0.9rem; margin-bottom:22px;}
+  .redo-columns{display:grid; grid-template-columns:1fr 1fr; gap:24px;}
+  .redo-col{border-top:1px dashed var(--line); padding-top:14px;}
+  .redo-label{font-size:0.7rem; display:block; margin-bottom:10px;}
+  .redo-yes .redo-label{color:var(--teal-light);}
+  .redo-no .redo-label{color:var(--ochre);}
+  .redo-col ul{list-style:none; display:flex; flex-direction:column; gap:8px;}
+  .redo-col ul:empty::after{content:'Da scrivere.'; color:var(--ivory-dim); font-size:0.82rem; font-style:italic;}
+  .redo-col li{font-size:0.88rem; color:var(--ivory-dim); line-height:1.5; padding-left:14px; position:relative;}
+  .redo-yes li::before{content:'+'; position:absolute; left:0; color:var(--teal-light);}
+  .redo-no li::before{content:'&minus;'; position:absolute; left:0; color:var(--ochre);}
+  @media(max-width:600px){
+    .redo-columns{grid-template-columns:1fr;}
+  }
+
   /* ---------- GALLERY ---------- */
   .gallery{padding:20px 0 40px;}
   .grid{
@@ -431,155 +465,137 @@
 </header>
 <section class="page-head">
   <div class="wrap">
-    <div class="eyebrow mono"><a href="viaggi.html" style="color:inherit;">&larr; Tutti i viaggi</a></div>
-    <h1>Francia</h1>
-    <p>Il giro dei castelli della Loira, da Lione a Digione. 8&ndash;16 Agosto 2024.</p>
+    <div class="eyebrow mono">Cronologia completa</div>
+    <h1>Diario di <span class="it">bordo</span></h1>
+    <p>Tutti i viaggi in ordine di tempo, con gli itinerari nel dettaglio e cosa rifarei &mdash; e cosa no.</p>
   </div>
 </section>
 
-<section id="francia">
+<section class="timeline-section">
   <div class="wrap">
+    <div class="timeline-wrap">
+      <div class="timeline-line"></div>
 
-    <article class="guide-article reveal" id="lione">
-      <div class="img-slot guide-cover">
-        <span class="slot-label">Immagine da inserire</span>
-        <span class="slot-file">lione-cover.jpg</span>
-      </div>
-      <div class="guide-head">
-        <div>
-          <span class="guide-eyebrow mono">Guida pratica &middot; 01</span>
-          <h3>Lione</h3>
-          <span class="guide-region mono">Francia &middot; Alvernia-Rodano-Alpi</span>
-        </div>
-        <div class="guide-stats">
-          <div>Durata<b>&mdash;</b></div>
-          <div>Budget<b>&mdash;</b></div>
-          <div>Periodo<b>Ago 2024</b></div>
-        </div>
-      </div>
-
-      <div class="guide-grid">
-        <div class="guide-main">
-          <span class="guide-section-title mono">Cosa vedere</span>
-          <p style="color:var(--ivory-dim); font-size:0.92rem;">Guida in scrittura &mdash; arriva a breve.</p>
-        </div>
-
-        <div class="guide-side">
-          <div class="stay-list">
-            <span class="guide-section-title mono">Dove dormire</span>
+      <article class="timeline-entry reveal">
+        <div class="timeline-dot"></div>
+        <span class="timeline-date mono">6&ndash;13 Agosto 2019</span>
+        <h3>Tenerife</h3>
+        <span class="timeline-region mono">Isole Canarie</span>
+        <ul class="timeline-stops">
+          <li>Tenerife</li>
+        </ul>
+        <p class="timeline-note">Itinerario in scrittura &mdash; arriva a breve.</p>
+        <div class="redo-columns">
+          <div class="redo-col redo-yes">
+            <span class="redo-label mono">Rifarei</span>
+            <ul></ul>
           </div>
-          <div class="eat-list">
-            <span class="guide-section-title mono">Dove mangiare</span>
+          <div class="redo-col redo-no">
+            <span class="redo-label mono">Non rifarei</span>
+            <ul></ul>
           </div>
         </div>
-      </div>
-    </article>
+      </article>
 
-    <article class="guide-article reveal" id="amboise">
-      <div class="img-slot guide-cover">
-        <span class="slot-label">Immagine da inserire</span>
-        <span class="slot-file">amboise-cover.jpg</span>
-      </div>
-      <div class="guide-head">
-        <div>
-          <span class="guide-eyebrow mono">Guida pratica &middot; 02</span>
-          <h3>Amboise e i castelli della Loira</h3>
-          <span class="guide-region mono">Francia &middot; Valle della Loira</span>
-        </div>
-        <div class="guide-stats">
-          <div>Durata<b>&mdash;</b></div>
-          <div>Budget<b>&mdash;</b></div>
-          <div>Periodo<b>Ago 2024</b></div>
-        </div>
-      </div>
-
-      <div class="guide-grid">
-        <div class="guide-main">
-          <span class="guide-section-title mono">Cosa vedere</span>
-          <p style="color:var(--ivory-dim); font-size:0.92rem;">Guida in scrittura &mdash; arriva a breve.</p>
-        </div>
-
-        <div class="guide-side">
-          <div class="stay-list">
-            <span class="guide-section-title mono">Dove dormire</span>
+      <article class="timeline-entry reveal">
+        <div class="timeline-dot"></div>
+        <span class="timeline-date mono">12&ndash;18 Novembre 2022</span>
+        <h3>Lanzarote</h3>
+        <span class="timeline-region mono">Isole Canarie</span>
+        <ul class="timeline-stops">
+          <li>Lanzarote</li>
+        </ul>
+        <p class="timeline-note">Itinerario in scrittura &mdash; arriva a breve.</p>
+        <div class="redo-columns">
+          <div class="redo-col redo-yes">
+            <span class="redo-label mono">Rifarei</span>
+            <ul></ul>
           </div>
-          <div class="eat-list">
-            <span class="guide-section-title mono">Dove mangiare</span>
+          <div class="redo-col redo-no">
+            <span class="redo-label mono">Non rifarei</span>
+            <ul></ul>
           </div>
         </div>
-      </div>
-    </article>
+      </article>
 
-    <article class="guide-article reveal" id="orleans">
-      <div class="img-slot guide-cover">
-        <span class="slot-label">Immagine da inserire</span>
-        <span class="slot-file">orleans-cover.jpg</span>
-      </div>
-      <div class="guide-head">
-        <div>
-          <span class="guide-eyebrow mono">Guida pratica &middot; 03</span>
-          <h3>Orl&eacute;ans</h3>
-          <span class="guide-region mono">Francia &middot; Valle della Loira</span>
-        </div>
-        <div class="guide-stats">
-          <div>Durata<b>&mdash;</b></div>
-          <div>Budget<b>&mdash;</b></div>
-          <div>Periodo<b>Ago 2024</b></div>
-        </div>
-      </div>
-
-      <div class="guide-grid">
-        <div class="guide-main">
-          <span class="guide-section-title mono">Cosa vedere</span>
-          <p style="color:var(--ivory-dim); font-size:0.92rem;">Guida in scrittura &mdash; arriva a breve.</p>
-        </div>
-
-        <div class="guide-side">
-          <div class="stay-list">
-            <span class="guide-section-title mono">Dove dormire</span>
+      <article class="timeline-entry reveal">
+        <div class="timeline-dot"></div>
+        <span class="timeline-date mono">8&ndash;16 Agosto 2024</span>
+        <h3>Francia</h3>
+        <span class="timeline-region mono">Rodano-Alpi &middot; Loira &middot; Borgogna</span>
+        <ul class="timeline-stops">
+          <li>Lione</li>
+          <li>Amboise e i castelli della Loira</li>
+          <li>Orl&eacute;ans</li>
+          <li>Digione</li>
+        </ul>
+        <p class="timeline-note">Itinerario in scrittura &mdash; arriva a breve.</p>
+        <div class="redo-columns">
+          <div class="redo-col redo-yes">
+            <span class="redo-label mono">Rifarei</span>
+            <ul></ul>
           </div>
-          <div class="eat-list">
-            <span class="guide-section-title mono">Dove mangiare</span>
+          <div class="redo-col redo-no">
+            <span class="redo-label mono">Non rifarei</span>
+            <ul></ul>
           </div>
         </div>
-      </div>
-    </article>
+      </article>
 
-    <article class="guide-article reveal" id="digione">
-      <div class="img-slot guide-cover">
-        <span class="slot-label">Immagine da inserire</span>
-        <span class="slot-file">digione-cover.jpg</span>
-      </div>
-      <div class="guide-head">
-        <div>
-          <span class="guide-eyebrow mono">Guida pratica &middot; 04</span>
-          <h3>Digione</h3>
-          <span class="guide-region mono">Francia &middot; Borgogna</span>
-        </div>
-        <div class="guide-stats">
-          <div>Durata<b>&mdash;</b></div>
-          <div>Budget<b>&mdash;</b></div>
-          <div>Periodo<b>Ago 2024</b></div>
-        </div>
-      </div>
-
-      <div class="guide-grid">
-        <div class="guide-main">
-          <span class="guide-section-title mono">Cosa vedere</span>
-          <p style="color:var(--ivory-dim); font-size:0.92rem;">Guida in scrittura &mdash; arriva a breve.</p>
-        </div>
-
-        <div class="guide-side">
-          <div class="stay-list">
-            <span class="guide-section-title mono">Dove dormire</span>
+      <article class="timeline-entry reveal">
+        <div class="timeline-dot"></div>
+        <span class="timeline-date mono">28 Febbraio&ndash;3 Marzo 2025</span>
+        <h3>Belgio</h3>
+        <span class="timeline-region mono">Bruxelles &middot; Bruges</span>
+        <ul class="timeline-stops">
+          <li>Bruxelles</li>
+          <li>Bruges</li>
+        </ul>
+        <p class="timeline-note">Itinerario in scrittura &mdash; arriva a breve.</p>
+        <div class="redo-columns">
+          <div class="redo-col redo-yes">
+            <span class="redo-label mono">Rifarei</span>
+            <ul></ul>
           </div>
-          <div class="eat-list">
-            <span class="guide-section-title mono">Dove mangiare</span>
+          <div class="redo-col redo-no">
+            <span class="redo-label mono">Non rifarei</span>
+            <ul></ul>
           </div>
         </div>
-      </div>
-    </article>
+      </article>
 
+      <article class="timeline-entry reveal">
+        <div class="timeline-dot"></div>
+        <span class="timeline-date mono">23 Aprile&ndash;10 Maggio 2026</span>
+        <h3>Filippine</h3>
+        <span class="timeline-region mono">Palawan &middot; Mindanao &middot; Visayas</span>
+        <ul class="timeline-stops">
+          <li>Manila</li>
+          <li>Coron</li>
+          <li>Siargao</li>
+          <li>Panglao e Bohol</li>
+        </ul>
+        <p class="timeline-note">Itinerario in scrittura &mdash; arriva a breve.</p>
+        <div class="redo-columns">
+          <div class="redo-col redo-yes">
+            <span class="redo-label mono">Rifarei</span>
+            <ul></ul>
+          </div>
+          <div class="redo-col redo-no">
+            <span class="redo-label mono">Non rifarei</span>
+            <ul></ul>
+          </div>
+        </div>
+      </article>
+
+      <article class="timeline-entry upcoming reveal">
+        <div class="timeline-dot upcoming"></div>
+        <span class="timeline-date mono">2&ndash;6 Agosto</span>
+        <h3>Londra</h3>
+        <span class="timeline-region mono">In arrivo</span>
+      </article>
+
+    </div>
   </div>
 </section>
 

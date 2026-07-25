@@ -62,7 +62,7 @@
     border-bottom:1px solid var(--line);
   }
   nav.wrap{display:flex; align-items:center; justify-content:space-between;}
-  .brand{font-family:'Fraunces', serif; font-size:1.35rem; font-weight:700; letter-spacing:0.01em;}
+  .brand{font-family:'Fraunces', serif; font-style:italic; font-size:1.4rem; font-weight:500; letter-spacing:0.01em; color:var(--teal-light);}
   .brand em{font-style:italic; color:var(--ochre); font-weight:500;}
   .navlinks{display:flex; gap:36px; font-size:0.82rem;}
   .navlinks a{
@@ -216,7 +216,7 @@
 
   footer{border-top:1px solid var(--line); padding:50px 0 40px;}
   footer .wrap{display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:20px;}
-  .foot-brand{font-family:'Fraunces', serif; font-size:1.1rem;}
+  .foot-brand{font-family:'Fraunces', serif; font-style:italic; font-size:1.15rem; font-weight:500; color:var(--teal-light);}
   .foot-links{display:flex; gap:26px; font-size:0.75rem; color:var(--ivory-dim);}
   .foot-links a:hover{color:var(--ochre);}
   .foot-coords{font-family:'IBM Plex Mono', monospace; font-size:0.68rem; color:var(--ivory-dim);}
@@ -226,12 +226,13 @@
 
 <header id="siteHeader" class="solid">
   <nav class="wrap">
-    <a href="index.html#top" class="brand">ALTR<em>o</em>VE</a>
+    <a href="index.html#top" class="brand">ALTROVE</a>
     <div class="navlinks">
       <a href="viaggi.html">Viaggi</a>
       <a href="mappa.html">Mappa</a>
+      <a href="diario.html">Diario</a>
       <a href="index.html#scatti">Scatti</a>
-      <a href="index.html#guide">Guide</a>
+      <a href="index.html#guide">Numeri</a>
     </div>
   </nav>
 </header>
@@ -272,12 +273,13 @@
 
 <footer>
   <div class="wrap">
-    <div class="foot-brand">ALTR<em style="color:var(--ochre); font-style:italic;">o</em>VE</div>
+    <div class="foot-brand">ALTROVE</div>
     <div class="foot-links">
       <a href="viaggi.html">Viaggi</a>
       <a href="mappa.html">Mappa</a>
+      <a href="diario.html">Diario</a>
       <a href="index.html#scatti">Scatti</a>
-      <a href="index.html#guide">Guide</a>
+      <a href="index.html#guide">Numeri</a>
     </div>
     <div class="foot-coords">&copy; 2026 Altrove &mdash; scritto da chi non sta mai fermo</div>
   </div>
@@ -288,6 +290,28 @@
   // Aggiungi qui un nuovo paese quando parti: basta un oggetto in pi&ugrave; in questo array.
   const countries = [
     {
+      code: "TF",
+      name: "Tenerife",
+      lat: 28.2916,
+      lon: -16.6291,
+      trips: 1,
+      tappe: 1,
+      period: "6 &ndash; 13 Ago 2019",
+      note: "Il Teide, le coste vulcaniche e i borghi delle Canarie.",
+      link: "tenerife.html#tenerife"
+    },
+    {
+      code: "LZ",
+      name: "Lanzarote",
+      lat: 29.0469,
+      lon: -13.5899,
+      trips: 1,
+      tappe: 1,
+      period: "12 &ndash; 18 Nov 2022",
+      note: "Vulcani, spiagge nere e l'impronta di C&eacute;sar Manrique su tutta l'isola.",
+      link: "lanzarote.html#lanzarote"
+    },
+    {
       code: "FR",
       name: "Francia",
       lat: 47.0,
@@ -297,6 +321,17 @@
       period: "8 &ndash; 16 Ago 2024",
       note: "Il giro dei castelli della Loira, da Lione a Digione, passando per Amboise e Orl&eacute;ans.",
       link: "francia.html#lione"
+    },
+    {
+      code: "BE",
+      name: "Belgio",
+      lat: 50.8503,
+      lon: 4.3517,
+      trips: 1,
+      tappe: 2,
+      period: "28 Feb &ndash; 3 Mar 2025",
+      note: "Un weekend lungo tra Bruxelles e Bruges.",
+      link: "belgio.html#bruxelles"
     },
     {
       code: "PH",

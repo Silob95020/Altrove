@@ -62,7 +62,7 @@
     border-bottom:1px solid var(--line);
   }
   nav.wrap{display:flex; align-items:center; justify-content:space-between;}
-  .brand{font-family:'Fraunces', serif; font-size:1.35rem; font-weight:700; letter-spacing:0.01em;}
+  .brand{font-family:'Fraunces', serif; font-style:italic; font-size:1.4rem; font-weight:500; letter-spacing:0.01em; color:var(--teal-light);}
   .brand em{font-style:italic; color:var(--ochre); font-weight:500;}
   .navlinks{display:flex; gap:36px; font-size:0.82rem;}
   .navlinks a{
@@ -217,6 +217,11 @@
   .exp-item h4{font-size:1.15rem; color:var(--ivory); margin-bottom:8px; font-weight:600;}
   .exp-item p{font-size:0.92rem; color:var(--ivory-dim); max-width:58ch; line-height:1.6;}
 
+  .tour-stops{margin-top:18px; display:flex; flex-direction:column; gap:18px;}
+  .tour-stop{padding-left:16px; border-left:2px solid var(--line);}
+  .tour-stop h5{font-size:0.95rem; color:var(--ivory); margin-bottom:4px; font-weight:600;}
+  .tour-stop p{font-size:0.88rem; color:var(--ivory-dim); line-height:1.6; max-width:none;}
+
   .guide-side{display:flex; flex-direction:column;}
   .stay-card{border:1px solid var(--line); border-radius:var(--radius); padding:18px 20px; background:var(--ink-2);}
   .stay-card + .stay-card{margin-top:14px;}
@@ -345,7 +350,7 @@
     border-top:1px solid var(--line); padding:50px 0 40px;
   }
   footer .wrap{display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:20px;}
-  .foot-brand{font-family:'Fraunces', serif; font-size:1.1rem;}
+  .foot-brand{font-family:'Fraunces', serif; font-style:italic; font-size:1.15rem; font-weight:500; color:var(--teal-light);}
   .foot-links{display:flex; gap:26px; font-size:0.75rem; color:var(--ivory-dim);}
   .foot-links a:hover{color:var(--ochre);}
   .foot-coords{font-family:'IBM Plex Mono', monospace; font-size:0.68rem; color:var(--ivory-dim);}
@@ -419,12 +424,13 @@
 
 <header id="siteHeader" class="solid">
   <nav class="wrap">
-    <a href="index.html#top" class="brand">ALTR<em>o</em>VE</a>
+    <a href="index.html#top" class="brand">ALTROVE</a>
     <div class="navlinks">
       <a href="viaggi.html">Viaggi</a>
       <a href="mappa.html">Mappa</a>
+      <a href="diario.html">Diario</a>
       <a href="index.html#scatti">Scatti</a>
-      <a href="index.html#guide">Guide</a>
+      <a href="index.html#guide">Numeri</a>
     </div>
   </nav>
 </header>
@@ -449,6 +455,7 @@
           <span class="guide-eyebrow mono">Guida pratica &middot; 01</span>
           <h3>Coron</h3>
           <span class="guide-region mono">Filippine &middot; Palawan</span>
+          <p style="font-family:'Fraunces', serif; font-style:italic; font-weight:500; color:var(--ivory-dim); font-size:1.05rem; margin-top:10px;">Il regno delle lagune turchesi e dei relitti sommersi</p>
         </div>
         <div class="guide-stats">
           <div>Durata<b>5 giorni</b></div>
@@ -459,13 +466,45 @@
 
       <div class="guide-grid">
         <div class="guide-main">
-          <span class="guide-section-title mono">Cosa vedere</span>
+          <p style="color:var(--ivory-dim); font-size:0.95rem; line-height:1.7; margin-bottom:16px;">Coron &egrave; una delle destinazioni pi&ugrave; spettacolari delle Filippine, famosa per le sue lagune turchesi, i laghi nascosti tra le montagne calcaree, i relitti della Seconda Guerra Mondiale e alcuni dei migliori spot per snorkeling dell'intero arcipelago.</p>
+          <p style="color:var(--ivory-dim); font-size:0.95rem; line-height:1.7; margin-bottom:32px;">Tra mare cristallino, natura selvaggia e alloggi immersi nella laguna, Coron &egrave; una tappa imperdibile per chi visita Palawan.</p>
+
+          <span class="guide-section-title mono">Le migliori esperienze da fare a Coron</span>
 
           <div class="exp-item">
             <span class="exp-index mono">01</span>
             <div>
               <h4>Super Ultimate Tour</h4>
-              <p>L'escursione pi&ugrave; completa per scoprire Coron in una giornata: la CYC Beach per iniziare tra stelle marine e primi coralli, il Coral Garden per lo snorkeling, lo Skeleton Shipwreck &mdash; un relitto giapponese della Seconda Guerra Mondiale &mdash; la Twin Lagoon con le sue pareti rocciose, il Barracuda Lake dove acqua dolce e salata si incontrano, e infine il Kayangan Lake: probabilmente il luogo pi&ugrave; famoso di Coron, con uno dei punti panoramici pi&ugrave; fotografati delle Filippine.</p>
+              <p>Il Super Ultimate Tour &egrave; l'escursione pi&ugrave; completa per scoprire le attrazioni principali di Coron in una giornata (preferibile rispetto ad altri tour che potrebbero escludere alcune delle attrazioni principali, totalmente sufficiente per godersi appieno l'isola).</p>
+              <p style="margin-top:10px;">Le tappe pi&ugrave; importanti sono:</p>
+
+              <div class="tour-stops">
+                <div class="tour-stop">
+                  <h5>CYC Beach</h5>
+                  <p>Una piccola spiaggia circondata da acqua trasparente e mangrovie, perfetta per iniziare l'esplorazione del mare di Coron. Qui si possono gi&agrave; osservare stelle marine, pesci tropicali e primi coralli.</p>
+                </div>
+                <div class="tour-stop">
+                  <h5>Coral Garden</h5>
+                  <p>Gli spot per lo snorkeling sono numerosi su tutta l'isola, giardini di coralli immensi dai pi&ugrave; svariati colori lasciano senza fiato. Se si &egrave; fortunati si pu&ograve; vedere nuotare anche qualche tartaruga.</p>
+                </div>
+                <div class="tour-stop">
+                  <h5>Skeleton Shipwreck</h5>
+                  <p>Un relitto di una nave da guerra giapponese affondata durante la Seconda Guerra Mondiale. Il sito &egrave; particolarmente interessante per chi ama snorkeling e immersioni. Purtroppo l'acqua non era perfettamente limpida e si apprezza molto meglio facendo un'immersione.</p>
+                </div>
+                <div class="tour-stop">
+                  <h5>Twin Lagoon</h5>
+                  <p>Uno dei simboli di Coron: due lagune circondate da imponenti pareti rocciose e collegate da un piccolo passaggio naturale. L'incontro tra acqua dolce e salata crea un ambiente unico, ideale per nuotare e fare kayak.</p>
+                </div>
+                <div class="tour-stop">
+                  <h5>Barracuda Lake</h5>
+                  <p>Un lago particolare dove acqua dolce e salata si incontrano. Le pareti rocciose che lo circondano e la temperatura variabile dell'acqua rendono questa esperienza diversa dai classici bagni in mare.</p>
+                </div>
+                <div class="tour-stop">
+                  <h5>Kayangan Lake</h5>
+                  <p>Probabilmente il luogo pi&ugrave; famoso di Coron. Dopo una breve salita si raggiunge uno dei punti panoramici pi&ugrave; fotografati delle Filippine, con una vista spettacolare sulla laguna sottostante. L'acqua incredibilmente limpida permette di nuotare in un ambiente completamente circondato dalla natura.</p>
+                </div>
+              </div>
+
               <div class="img-slot exp-photo">
                 <span class="slot-label">Foto</span>
                 <span class="slot-file">coron-super-ultimate.jpg</span>
@@ -477,7 +516,8 @@
             <span class="exp-index mono">02</span>
             <div>
               <h4>Kayak tra le lagune</h4>
-              <p>Partendo dalle Paolyn Houseboats si raggiungono zone pi&ugrave; tranquille in autonomia: mangrovie da attraversare, piccole spiagge nascoste e snorkeling lontano dalle barche dei tour organizzati.</p>
+              <p>Una delle esperienze migliori a Coron &egrave; esplorare le lagune in autonomia con un kayak.</p>
+              <p style="margin-top:10px;">Partendo dalle Paolyn Houseboats &egrave; possibile raggiungere zone pi&ugrave; tranquille, attraversare mangrovie, scoprire piccole spiagge nascoste e fare snorkeling lontano dalle barche dei tour organizzati.</p>
               <div class="img-slot exp-photo">
                 <span class="slot-label">Foto</span>
                 <span class="slot-file">coron-kayak-tra-le-lagune.jpg</span>
@@ -489,7 +529,8 @@
             <span class="exp-index mono">03</span>
             <div>
               <h4>Coron Town e la vita locale</h4>
-              <p>Oltre alle escursioni in mare, vale la pena dedicare qualche ora al centro: villaggi di pescatori, mercati locali e piccoli ristoranti raccontano un lato pi&ugrave; autentico dell'isola.</p>
+              <p>Oltre alle escursioni in mare, vale la pena dedicare qualche ora a Coron Town.</p>
+              <p style="margin-top:10px;">Il centro permette di osservare un lato pi&ugrave; autentico dell'isola, tra villaggi di pescatori, mercati locali, piccoli ristoranti e la quotidianit&agrave; della popolazione filippina.</p>
               <div class="img-slot exp-photo">
                 <span class="slot-label">Foto</span>
                 <span class="slot-file">coron-town.jpg</span>
@@ -501,7 +542,8 @@
             <span class="exp-index mono">04</span>
             <div>
               <h4>Tramonti e relax a Busuanga</h4>
-              <p>La zona di Busuanga, dove si trova l'Al Faro Cosmio Hotel, offre un'atmosfera diversa rispetto al centro: baie tranquille, mangrovie, mare aperto e tramonti spettacolari sulla costa.</p>
+              <p>La zona di Busuanga, dove si trova l'Al Faro Cosmio Hotel, offre un'atmosfera completamente diversa rispetto al centro di Coron.</p>
+              <p style="margin-top:10px;">Qui il punto forte &egrave; godersi il paesaggio: baie tranquille, mangrovie, mare aperto e tramonti spettacolari sulla costa.</p>
               <div class="img-slot exp-photo">
                 <span class="slot-label">Foto</span>
                 <span class="slot-file">coron-busuanga.jpg</span>
@@ -805,12 +847,13 @@
 
 <footer style="margin-top:60px;">
   <div class="wrap">
-    <div class="foot-brand">ALTR<em style="color:var(--ochre); font-style:italic;">o</em>VE</div>
+    <div class="foot-brand">ALTROVE</div>
     <div class="foot-links">
       <a href="viaggi.html">Viaggi</a>
       <a href="mappa.html">Mappa</a>
+      <a href="diario.html">Diario</a>
       <a href="index.html#scatti">Scatti</a>
-      <a href="index.html#guide">Guide</a>
+      <a href="index.html#guide">Numeri</a>
     </div>
     <div class="foot-coords">&copy; 2026 Altrove &mdash; scritto da chi non sta mai fermo</div>
   </div>
