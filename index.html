@@ -331,25 +331,25 @@
   }
   .teaser-card{
     position:relative; border-radius:var(--radius); overflow:hidden;
-    aspect-ratio:4/5; display:flex; align-items:flex-end;
-    transition:transform .4s ease;
+    display:flex; flex-direction:column;
+    background:var(--ink-2); border:1px solid var(--line);
+    transition:transform .4s ease, border-color .3s ease;
   }
-  .teaser-card:hover{transform:translateY(-6px);}
+  .teaser-card:hover{transform:translateY(-6px); border-color:var(--ochre-dim);}
+  .teaser-card .teaser-photo{
+    position:relative; aspect-ratio:4/3; overflow:hidden;
+  }
   .teaser-card img{
     position:absolute; inset:0; width:100%; height:100%; object-fit:cover;
     transition:transform .6s ease;
   }
   .teaser-card:hover img{transform:scale(1.07);}
-  .teaser-card::before{
-    content:''; position:absolute; inset:0;
-    background:linear-gradient(180deg, rgba(20,24,28,0) 10%, rgba(20,24,28,0.55) 55%, rgba(20,24,28,0.97) 100%);
-  }
-  .teaser-content{position:relative; z-index:2; padding:26px 24px;}
+  .teaser-content{position:relative; padding:22px 22px 24px;}
   .teaser-code{
     font-family:'IBM Plex Mono', monospace; font-size:0.72rem; color:var(--ochre);
     letter-spacing:0.08em; text-transform:uppercase; margin-bottom:10px; display:block;
   }
-  .teaser-content h3{font-size:1.4rem; color:var(--ivory); margin-bottom:8px; text-shadow:0 1px 10px rgba(0,0,0,0.5);}
+  .teaser-content h3{font-size:1.3rem; color:var(--ivory); margin-bottom:8px;}
   .teaser-content p{font-size:0.85rem; color:var(--ivory-dim); margin-bottom:14px; max-width:32ch;}
   .teaser-link{font-size:0.74rem; color:var(--teal-light); border-bottom:1px solid transparent; transition:border-color .2s ease, color .2s ease;}
   .teaser-card:hover .teaser-link{border-color:var(--teal-light); color:var(--ivory);}
@@ -454,7 +454,9 @@
     <div class="teaser-grid">
 
       <a href="filippine.html#coron" class="teaser-card">
-        <img src="images/coron-teaser.jpg" alt="Acqua turchese trasparente nella laguna di Coron, con una barca a bilanciere e una casetta di paglia sullo sfondo">
+        <div class="teaser-photo">
+          <img src="images/coron-teaser.jpg" alt="Acqua turchese trasparente nella laguna di Coron, con una barca a bilanciere e una casetta di paglia sullo sfondo">
+        </div>
         <div class="teaser-content">
           <span class="teaser-code mono">USU &middot; Coron</span>
           <h3>Laghi nascosti e relitti</h3>
@@ -464,7 +466,9 @@
       </a>
 
       <a href="filippine.html#siargao" class="teaser-card">
-        <img src="images/siargao-teaser.jpg" alt="Grande roccia calcarea in mezzo a una piscina naturale d'acqua turchese, con persone che nuotano">
+        <div class="teaser-photo">
+          <img src="images/siargao-teaser.jpg" alt="Grande roccia calcarea in mezzo a una piscina naturale d'acqua turchese, con persone che nuotano">
+        </div>
         <div class="teaser-content">
           <span class="teaser-code mono">IAO &middot; Siargao</span>
           <h3>Meglio in motorino</h3>
@@ -474,7 +478,9 @@
       </a>
 
       <a href="filippine.html#panglao-bohol" class="teaser-card">
-        <img src="images/panglao-bohol-teaser.jpg" alt="Tartaruga marina che nuota sul fondale corallino">
+        <div class="teaser-photo">
+          <img src="images/panglao-bohol-teaser.jpg" alt="Tartaruga marina che nuota sul fondale corallino">
+        </div>
         <div class="teaser-content">
           <span class="teaser-code mono">TAG &middot; Panglao/Bohol</span>
           <h3>L'ultima tappa pi&ugrave; lenta</h3>
