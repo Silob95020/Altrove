@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ALTROVE &mdash; Diario di viaggio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Manrope:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#14181C;
+    --ink-2:#1B2126;
+    --ivory:#F3EFE6;
+    --ivory-dim: #C9C4B8;
+    --ochre:#C98A2C;
+    --ochre-dim:#8a611f;
+    --teal:#3E6E68;
+    --teal-light:#6FA79E;
+    --line: rgba(243,239,230,0.14);
+    --radius: 2px;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--ink);
+    color:var(--ivory);
+    font-family:'Manrope', sans-serif;
+    font-weight:400;
+    line-height:1.6;
+    overflow-x:hidden;
+  }
+  h1,h2,h3{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    letter-spacing:-0.01em;
+  }
+  .mono{
+    font-family:'IBM Plex Mono', monospace;
+    letter-spacing:0.04em;
+    text-transform:uppercase;
+  }
+  a{color:inherit; text-decoration:none;}
+  img{display:block; max-width:100%;}
+  .wrap{max-width:1180px; margin:0 auto; padding:0 32px;}
+
+  /* reveal on scroll */
+  .reveal{opacity:0; transform:translateY(24px); transition:opacity .8s ease, transform .8s ease;}
+  .reveal.in{opacity:1; transform:translateY(0);}
+
+  /* ---------- NAV ---------- */
+  header{
+    position:fixed; top:0; left:0; right:0; z-index:100;
+    padding:22px 0;
+    transition: background .4s ease, padding .4s ease, border-color .4s ease;
+    border-bottom:1px solid transparent;
+  }
+  header::before{
+    content:''; position:absolute; inset:0; z-index:-1; pointer-events:none;
+    background:linear-gradient(180deg, rgba(20,24,28,0.65) 0%, rgba(20,24,28,0) 100%);
+    opacity:1; transition:opacity .4s ease;
+  }
+  header.solid::before{opacity:0;}
+  header.solid{
+    background:rgba(20,24,28,0.92);
+    backdrop-filter:blur(8px);
+    padding:16px 0;
+    border-bottom:1px solid var(--line);
+  }
+  nav.wrap{display:flex; align-items:center; justify-content:space-between;}
+  .brand{font-family:'Fraunces', serif; font-style:italic; font-size:1.4rem; font-weight:500; letter-spacing:0.01em; color:var(--teal-light); text-shadow:0 1px 14px rgba(0,0,0,0.75);}
+  .brand em{font-style:italic; color:var(--ochre); font-weight:500;}
+  .navlinks{display:flex; gap:36px; font-size:0.82rem;}
+  .navlinks a{
+    font-family:'IBM Plex Mono', monospace;
+    text-transform:uppercase; letter-spacing:0.08em;
+    opacity:0.8; transition:opacity .2s ease, color .2s ease;
+    position:relative;
+    text-shadow:0 1px 12px rgba(0,0,0,0.75);
+  }
+  .navlinks a:hover{opacity:1; color:var(--ochre);}
+  @media(max-width:720px){ .navlinks{display:none;} }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative; height:100vh; min-height:640px;
+    display:flex; align-items:flex-end;
+    overflow:hidden;
+  }
+  .hero-img{
+    position:absolute; inset:0; width:100%; height:112%; object-fit:cover;
+    will-change:transform;
+  }
+  .hero::after{
+    content:''; position:absolute; inset:0;
+    background:linear-gradient(180deg, rgba(20,24,28,0.55) 0%, rgba(20,24,28,0.2) 18%, rgba(20,24,28,0.4) 55%, rgba(20,24,28,0.96) 100%);
+  }
+  .hero-content{position:relative; z-index:2; padding-bottom:76px; width:100%;}
+  .eyebrow{
+    font-size:0.78rem; color:var(--teal-light); margin-bottom:18px; display:flex; gap:14px; align-items:center;
+  }
+  .eyebrow::before{content:''; width:26px; height:1px; background:var(--teal-light); display:inline-block;}
+  .hero h1{
+    font-size:clamp(2.6rem, 7vw, 5.6rem);
+    line-height:0.98;
+    color:var(--ivory);
+    max-width:11ch;
+  }
+  .hero h1 .it{font-style:italic; font-weight:500; color:var(--ochre);}
+  .hero p{
+    max-width:420px; margin-top:22px; color:var(--ivory-dim); font-size:1.02rem;
+  }
+  .scroll-cue{
+    position:absolute; right:32px; bottom:36px; z-index:2;
+    writing-mode:vertical-rl; font-size:0.72rem; color:var(--ivory-dim);
+    display:flex; align-items:center; gap:10px;
+  }
+  .scroll-cue .bar{width:1px; height:46px; background:var(--ivory-dim); position:relative; overflow:hidden;}
+  .scroll-cue .bar::after{
+    content:''; position:absolute; top:0; left:0; width:100%; height:40%; background:var(--ochre);
+    animation:cue 2.2s ease-in-out infinite;
+  }
+  @keyframes cue{0%{transform:translateY(-100%)} 100%{transform:translateY(250%)}}
+
+  /* ---------- INTRO / MANIFESTO ---------- */
+  .manifesto{
+    padding:120px 0 100px;
+    border-bottom:1px solid var(--line);
+  }
+  .manifesto .wrap{display:grid; grid-template-columns:1fr 1.4fr; gap:60px;}
+  .manifesto .label{font-size:0.78rem; color:var(--ochre);}
+  .manifesto h2{
+    font-size:clamp(1.6rem,3vw,2.3rem); font-weight:500; font-style:italic; line-height:1.35; color:var(--ivory);
+  }
+  .coords{
+    margin-top:28px; display:flex; gap:26px; flex-wrap:wrap;
+  }
+  .coords div{font-size:0.72rem; color:var(--ivory-dim);}
+  .coords strong{display:block; color:var(--teal-light); font-size:0.95rem; margin-bottom:4px; font-family:'IBM Plex Mono', monospace;}
+  @media(max-width:820px){ .manifesto .wrap{grid-template-columns:1fr;} }
+
+  /* ---------- SECTION HEADS ---------- */
+  .section-head{
+    padding:100px 0 46px;
+    display:flex; justify-content:space-between; align-items:flex-end; gap:20px; flex-wrap:wrap;
+  }
+  .section-head .tag{font-size:0.78rem; color:var(--ochre); margin-bottom:14px; display:block;}
+  .section-head h2{font-size:clamp(2rem,4vw,3rem); color:var(--ivory);}
+  .section-head p{max-width:340px; color:var(--ivory-dim); font-size:0.95rem; padding-bottom:6px;}
+  .upcoming-note{
+    font-family:'IBM Plex Mono', monospace; font-size:0.72rem; color:var(--ochre);
+    border:1px dashed var(--ochre-dim); border-radius:var(--radius); padding:6px 12px;
+    display:inline-block; margin-top:14px;
+  }
+
+  /* ---------- STORIES (boarding pass cards) ---------- */
+  .stories{padding-bottom:60px;}
+  .story{
+    display:grid; grid-template-columns:1.1fr 1fr; gap:0;
+    border-top:1px solid var(--line);
+    position:relative;
+  }
+  .story:last-child{border-bottom:1px solid var(--line);}
+  .story-media{position:relative; overflow:hidden; min-height:420px;}
+  .story-media img{width:100%; height:100%; object-fit:cover; transition:transform .8s cubic-bezier(.2,.8,.2,1);}
+  .story:hover .story-media img{transform:scale(1.06);}
+  .story-body{
+    padding:56px 60px; display:flex; flex-direction:column; justify-content:center;
+    position:relative;
+  }
+  .story:nth-child(even){grid-template-columns:1fr 1.1fr;}
+  .story:nth-child(even) .story-media{order:2;}
+  .story:nth-child(even) .story-body{order:1;}
+
+  .pass-stub{
+    display:flex; align-items:center; gap:14px; margin-bottom:22px;
+  }
+  .pass-code{
+    font-family:'IBM Plex Mono', monospace; font-size:1.4rem; font-weight:500; color:var(--ochre);
+    border:1px dashed var(--ochre-dim); padding:6px 12px; border-radius:var(--radius);
+  }
+  .pass-route{font-size:0.72rem; color:var(--ivory-dim);}
+  .pass-route span{color:var(--teal-light);}
+
+  .story-body h3{font-size:1.9rem; color:var(--ivory); margin-bottom:14px; max-width:16ch;}
+  .story-body p{color:var(--ivory-dim); font-size:0.98rem; max-width:44ch; margin-bottom:24px;}
+  .story-meta{
+    display:flex; gap:22px; font-size:0.72rem; color:var(--ivory-dim); margin-bottom:24px;
+  }
+  .story-meta b{color:var(--ivory); font-weight:600;}
+  .read-more{
+    font-size:0.78rem; color:var(--teal-light); display:inline-flex; align-items:center; gap:8px;
+    width:fit-content; padding-bottom:2px; border-bottom:1px solid transparent; transition:border-color .2s ease, color .2s ease;
+  }
+  .read-more:hover{border-color:var(--teal-light); color:var(--ivory);}
+
+  @media(max-width:820px){
+    .story, .story:nth-child(even){grid-template-columns:1fr;}
+    .story:nth-child(even) .story-media, .story:nth-child(even) .story-body{order:unset;}
+    .story-media{min-height:280px;}
+    .story-body{padding:36px 26px;}
+  }
+
+  /* ---------- SCHIZZI DI VIAGGIO ---------- */
+  .sketches{padding:20px 0 40px;}
+  .sketch-grid{
+    display:grid; grid-template-columns:repeat(auto-fill, minmax(280px,1fr)); gap:32px;
+  }
+  .sketch-card{
+    background:#EFE9DC; border-radius:2px; padding:18px 18px 22px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.35);
+    transition:transform .4s ease, box-shadow .4s ease;
+  }
+  .sketch-card:hover{transform:translateY(-6px) rotate(-0.4deg); box-shadow:0 16px 40px rgba(0,0,0,0.45);}
+  .sketch-card img{width:100%; display:block; border-radius:1px;}
+  .sketch-cap{
+    margin-top:16px; padding-top:14px; border-top:1px dashed rgba(20,24,28,0.18);
+    text-align:center;
+  }
+  .sketch-cap .name{
+    font-family:'Fraunces', serif; font-style:italic; font-weight:500;
+    color:#14181C; font-size:1rem; letter-spacing:0.02em;
+  }
+
+  /* ---------- GALLERY (fisarmonica) ---------- */
+  .gallery{padding:20px 0 40px;}
+  .accordion{
+    display:flex; gap:6px; height:520px; overflow:hidden;
+  }
+  .acc-item{
+    flex:1; min-width:0; position:relative; overflow:hidden; cursor:pointer;
+    border-radius:var(--radius);
+    transition:flex 0.6s cubic-bezier(.4,0,.2,1);
+  }
+  .acc-item img{
+    width:100%; height:100%; object-fit:cover; display:block;
+    filter:grayscale(0.35) brightness(0.75); transition:filter .5s ease;
+  }
+  .acc-item:hover{flex:6;}
+  .acc-item:hover img{filter:grayscale(0) brightness(1);}
+  .acc-item .acc-cap{
+    position:absolute; left:14px; bottom:14px; right:14px;
+    font-family:'IBM Plex Mono', monospace; font-size:0.68rem; color:var(--ivory);
+    text-transform:uppercase; letter-spacing:0.06em;
+    opacity:0; transform:translateY(6px); transition:opacity .3s ease .1s, transform .3s ease .1s;
+    text-shadow:0 2px 8px rgba(0,0,0,0.6); white-space:nowrap;
+  }
+  .acc-item:hover .acc-cap{opacity:1; transform:translateY(0);}
+  .acc-item .acc-index{
+    position:absolute; left:14px; top:14px;
+    font-family:'IBM Plex Mono', monospace; font-size:0.68rem; color:rgba(243,239,230,0.75);
+    text-shadow:0 2px 8px rgba(0,0,0,0.6);
+  }
+  @media(max-width:820px){
+    .accordion{flex-direction:column; height:auto;}
+    .acc-item{flex:none; height:110px; transition:height 0.5s ease;}
+    .acc-item:hover{flex:none; height:340px;}
+  }
+
+  /* ---------- GUIDES (luggage tags) ---------- */
+  .guides{padding:20px 0 100px;}
+  .tag-row{
+    display:flex; gap:22px; overflow-x:auto; padding:10px 4px 30px;
+    scrollbar-width:thin; scrollbar-color:var(--ochre-dim) transparent;
+  }
+  .tag-row::-webkit-scrollbar{height:6px;}
+  .tag-row::-webkit-scrollbar-thumb{background:var(--ochre-dim); border-radius:6px;}
+
+  .tag{
+    flex:0 0 300px;
+    background:var(--ink-2);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:0;
+    position:relative;
+    transition:transform .3s ease, border-color .3s ease;
+  }
+  .tag:hover{transform:translateY(-6px); border-color:var(--ochre-dim);}
+  .tag-hole{
+    position:absolute; top:22px; left:22px; width:14px; height:14px; border-radius:50%;
+    background:var(--ink); border:1px solid var(--line);
+  }
+  .tag-photo{height:150px; overflow:hidden;}
+  .tag-photo img{width:100%; height:100%; object-fit:cover;}
+  .tag-body{padding:22px 24px 26px;}
+  .tag-dest{font-size:1.3rem; color:var(--ivory); margin-bottom:4px;}
+  .tag-country{font-size:0.72rem; color:var(--teal-light); margin-bottom:16px;}
+  .tag-divider{border-top:1px dashed var(--line); margin:14px 0;}
+  .tag-stats{display:flex; justify-content:space-between; font-size:0.68rem; color:var(--ivory-dim); margin-bottom:14px;}
+  .tag-stats b{display:block; color:var(--ivory); font-size:0.95rem; font-family:'IBM Plex Mono',monospace; font-weight:500;}
+  .tag-tip{font-size:0.85rem; color:var(--ivory-dim); line-height:1.5;}
+  .tag-tip b{color:var(--ochre); font-style:normal; font-weight:600;}
+
+  .stat-card{
+    flex:0 0 300px; background:var(--ink-2); border:1px solid var(--line); border-radius:var(--radius);
+    padding:26px 26px 28px; transition:transform .3s ease, border-color .3s ease;
+  }
+  .stat-card:hover{transform:translateY(-6px); border-color:var(--ochre-dim);}
+  .stat-card-country{font-size:1.3rem; color:var(--ivory); margin-bottom:4px;}
+  .stat-card-period{font-size:0.72rem; color:var(--teal-light); display:block; margin-bottom:18px;}
+  .stat-row{
+    display:flex; justify-content:space-between; align-items:baseline;
+    padding:10px 0; font-size:0.82rem; color:var(--ivory-dim); border-top:1px dashed var(--line);
+  }
+  .stat-row:first-of-type{border-top:1px dashed var(--line);}
+  .stat-row b{color:var(--ivory); font-family:'IBM Plex Mono', monospace; font-weight:500; font-size:0.95rem;}
+
+  .stat-dishes{padding-top:14px; border-top:1px dashed var(--line); margin-top:4px;}
+  .stat-dishes-label{font-size:0.82rem; color:var(--ivory-dim); margin-bottom:10px; display:block;}
+  .dish-pills{display:flex; flex-wrap:wrap; gap:8px;}
+  .dish-pill{
+    font-family:'IBM Plex Mono', monospace; font-size:0.68rem; color:var(--ivory);
+    border:1px dashed var(--ochre-dim); padding:4px 10px; border-radius:var(--radius);
+  }
+
+  /* ---------- NEWSLETTER / FOOTER ---------- */
+  .cta{
+    padding:110px 0; text-align:center; border-top:1px solid var(--line); position:relative; overflow:hidden;
+  }
+  .cta h2{font-size:clamp(2rem,5vw,3.4rem); max-width:14ch; margin:0 auto 26px; color:var(--ivory);}
+  .cta h2 em{font-style:italic; color:var(--ochre); font-weight:500;}
+  .cta p{color:var(--ivory-dim); max-width:440px; margin:0 auto 40px;}
+  .form-row{display:flex; justify-content:center; gap:0; max-width:440px; margin:0 auto;}
+  .form-row input{
+    flex:1; background:transparent; border:1px solid var(--line); border-right:none;
+    padding:16px 18px; color:var(--ivory); font-family:'Manrope', sans-serif; font-size:0.9rem;
+    border-radius:var(--radius) 0 0 var(--radius);
+  }
+  .form-row input:focus{outline:2px solid var(--ochre); outline-offset:-2px;}
+  .form-row input::placeholder{color:var(--ivory-dim);}
+  .form-row button{
+    background:var(--ochre); color:var(--ink); border:none; padding:0 26px;
+    font-family:'IBM Plex Mono', monospace; font-size:0.78rem; text-transform:uppercase; letter-spacing:0.06em;
+    cursor:pointer; border-radius:0 var(--radius) var(--radius) 0; transition:background .2s ease;
+  }
+  .form-row button:hover{background:var(--teal-light);}
+  .form-note{margin-top:16px; font-size:0.7rem; color:var(--ivory-dim);}
+
+  footer{
+    border-top:1px solid var(--line); padding:50px 0 40px;
+  }
+  footer .wrap{display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:20px;}
+  .foot-brand{font-family:'Fraunces', serif; font-style:italic; font-size:1.15rem; font-weight:500; color:var(--teal-light);}
+  .foot-links{display:flex; gap:26px; font-size:0.75rem; color:var(--ivory-dim);}
+  .foot-links a:hover{color:var(--ochre);}
+  .foot-coords{font-family:'IBM Plex Mono', monospace; font-size:0.68rem; color:var(--ivory-dim);}
+
+  /* ---------- HOME: TRIP TEASER ---------- */
+  .teaser{padding-bottom:40px;}
+  .teaser-grid{
+    display:grid; grid-template-columns:repeat(3, 1fr); gap:26px;
+  }
+  .teaser-card{
+    position:relative; border-radius:var(--radius); overflow:hidden;
+    display:flex; flex-direction:column;
+    background:var(--ink-2); border:1px solid var(--line);
+    transition:transform .4s ease, border-color .3s ease;
+  }
+  .teaser-card:hover{transform:translateY(-6px); border-color:var(--ochre-dim);}
+  .teaser-card .teaser-photo{
+    position:relative; aspect-ratio:4/3; overflow:hidden;
+  }
+  .teaser-card img{
+    position:absolute; inset:0; width:100%; height:100%; object-fit:cover;
+    transition:transform .6s ease;
+  }
+  .teaser-card:hover img{transform:scale(1.07);}
+  .teaser-content{position:relative; padding:22px 22px 24px;}
+  .teaser-code{
+    font-family:'IBM Plex Mono', monospace; font-size:0.72rem; color:var(--ochre);
+    letter-spacing:0.08em; text-transform:uppercase; margin-bottom:10px; display:block;
+  }
+  .teaser-content h3{font-size:1.3rem; color:var(--ivory); margin-bottom:8px;}
+  .teaser-content p{font-size:0.85rem; color:var(--ivory-dim); margin-bottom:14px; max-width:32ch;}
+  .teaser-link{font-size:0.74rem; color:var(--teal-light); border-bottom:1px solid transparent; transition:border-color .2s ease, color .2s ease;}
+  .teaser-card:hover .teaser-link{border-color:var(--teal-light); color:var(--ivory);}
+  .teaser-cta{
+    text-align:center; margin-top:44px;
+  }
+  .btn-outline{
+    display:inline-flex; align-items:center; gap:10px;
+    border:1px solid var(--line); padding:14px 30px;
+    font-family:'IBM Plex Mono', monospace; font-size:0.78rem; text-transform:uppercase; letter-spacing:0.06em;
+    color:var(--ivory); border-radius:var(--radius); transition:border-color .2s ease, color .2s ease, background .2s ease;
+  }
+  .btn-outline:hover{border-color:var(--ochre); color:var(--ochre); background:rgba(201,138,44,0.06);}
+  @media(max-width:820px){ .teaser-grid{grid-template-columns:1fr;} }
+
+  /* ---------- SUB-PAGE HEADER (no full hero photo) ---------- */
+  .page-head{
+    padding:190px 0 60px;
+    border-bottom:1px solid var(--line);
+  }
+  .page-head .eyebrow{margin-bottom:20px;}
+  .page-head h1{
+    font-size:clamp(2.4rem, 6vw, 4.2rem); color:var(--ivory); max-width:16ch; line-height:1.02;
+  }
+  .page-head h1 .it{font-style:italic; font-weight:500; color:var(--ochre);}
+  .page-head p{max-width:480px; margin-top:22px; color:var(--ivory-dim); font-size:1rem;}
+
+  /* ---------- TRIP GROUP (used on viaggi page) ---------- */
+  .trip-group-head{
+    padding:70px 0 10px;
+    display:flex; align-items:baseline; gap:20px; flex-wrap:wrap;
+  }
+  .trip-group-head h2{font-size:clamp(1.6rem,3vw,2.2rem); color:var(--ivory);}
+  .trip-group-head .trip-dates{
+    font-family:'IBM Plex Mono', monospace; font-size:0.78rem; color:var(--teal-light);
+    padding-bottom:4px;
+  }
+  .trip-group-line{height:1px; background:var(--line); flex:1; min-width:60px;}
+</style>
+</head>
+<body>
+
+<header id="siteHeader">
+  <nav class="wrap">
+    <a href="index.html#top" class="brand">ALTROVE</a>
+    <div class="navlinks">
+      <a href="viaggi.html">Viaggi</a>
+      <a href="mappa.html">Mappa</a>
+      <a href="diario.html">Diario</a>
+      <a href="index.html#scatti">Scatti</a>
+      <a href="index.html#schizzi">Schizzi</a>
+      <a href="index.html#guide">Numeri</a>
+    </div>
+  </nav>
+</header>
+
+<section class="hero" id="top">
+  <img class="hero-img" id="heroImg" src="images/hero-cover.jpg" alt="Cascate immerse nella foresta, con un laghetto dalle acque verde smeraldo">
+  <div class="hero-content wrap">
+    <div class="eyebrow mono">45.6445&deg; N, 9.0820&deg; E &mdash; base di partenza</div>
+    <h1>Storie da <span class="it">altrove</span></h1>
+    <p>Ogni viaggio lascia qualcosa da raccontare: itinerari, guide, fotografie e racconti pensati per ispirarti e aiutarti a costruire il tuo prossimo viaggio.</p>
+  </div>
+  <div class="scroll-cue mono"><div class="bar"></div>SCORRI</div>
+</section>
+
+<section class="manifesto reveal">
+  <div class="wrap">
+    <div>
+      <div class="label mono">Il progetto</div>
+      <h3 style="font-family:'IBM Plex Mono',monospace; font-size:0.85rem; text-transform:uppercase; color:var(--ivory-dim); letter-spacing:0.05em; font-weight:400; margin-top:8px;">Diario di bordo aggiornato dal 2019</h3>
+    </div>
+    <div>
+      <h2 style="font-style:italic;">&laquo;Non so ancora come andr&agrave;, ma scelgo di fidarmi del viaggio.&raquo;</h2>
+      <div class="label mono" style="margin-top:14px; margin-bottom:0;">&mdash; Oceania</div>
+
+      <h2 style="font-style:italic; margin-top:34px;">&laquo;Se puoi sognarlo, puoi farlo.&raquo;</h2>
+      <div class="label mono" style="margin-top:14px; margin-bottom:0;">&mdash; Walt Disney</div>
+
+      <h2 style="font-style:italic; margin-top:34px;">&laquo;Ovunque tu vada, vacci con tutto il cuore.&raquo;</h2>
+      <div class="label mono" style="margin-top:14px; margin-bottom:0;">&mdash; Confucio</div>
+      <div class="coords">
+        <div><strong>47</strong>paesi attraversati</div>
+        <div><strong>210+</strong>giorni all'anno in viaggio</div>
+        <div><strong>03</strong>continenti quest'anno</div>
+        <div><strong>1</strong>zaino, sempre lo stesso</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRIP TEASER -->
+<section class="teaser">
+  <div class="section-head wrap reveal">
+    <div>
+      <span class="tag mono">Diario di bordo</span>
+      <h2>Ultimo viaggio</h2>
+    </div>
+    <p>Filippine, 23 Aprile &rarr; 10 Maggio. Tre isole, un unico filo conduttore: mare, cultura e qualche imprevisto.</p>
+    <div class="upcoming-note">In arrivo &middot; Londra, 2&ndash;6 Agosto</div>
+  </div>
+  <div class="wrap reveal">
+    <div class="teaser-grid">
+
+      <a href="filippine.html#coron" class="teaser-card">
+        <div class="teaser-photo">
+          <img src="images/coron-teaser.jpg" alt="Acqua turchese trasparente nella laguna di Coron, con una barca a bilanciere e una casetta di paglia sullo sfondo">
+        </div>
+        <div class="teaser-content">
+          <span class="teaser-code mono">USU &middot; Coron</span>
+          <h3>Laghi nascosti e relitti</h3>
+          <p>Twin Lagoon all'alba e una notte sull'acqua alla Paolyn Houseboat.</p>
+          <span class="teaser-link">Leggi il viaggio &rarr;</span>
+        </div>
+      </a>
+
+      <a href="filippine.html#siargao" class="teaser-card">
+        <div class="teaser-photo">
+          <img src="images/siargao-teaser.jpg" alt="Grande roccia calcarea in mezzo a una piscina naturale d'acqua turchese, con persone che nuotano">
+        </div>
+        <div class="teaser-content">
+          <span class="teaser-code mono">IAO &middot; Siargao</span>
+          <h3>Meglio in motorino</h3>
+          <p>Surf a Pacifico Beach, Sugba Lagoon e un acquazzone da ricordare.</p>
+          <span class="teaser-link">Leggi il viaggio &rarr;</span>
+        </div>
+      </a>
+
+      <a href="filippine.html#panglao-bohol" class="teaser-card">
+        <div class="teaser-photo">
+          <img src="images/panglao-bohol-teaser.jpg" alt="Tartaruga marina che nuota sul fondale corallino">
+        </div>
+        <div class="teaser-content">
+          <span class="teaser-code mono">TAG &middot; Panglao/Bohol</span>
+          <h3>L'ultima tappa pi&ugrave; lenta</h3>
+          <p>Tartarughe a Balicasag, tarsier e lucciole sul fiume Loboc.</p>
+          <span class="teaser-link">Leggi il viaggio &rarr;</span>
+        </div>
+      </a>
+
+    </div>
+    <div class="teaser-cta">
+      <a href="viaggi.html" class="btn-outline">Vai a tutti i viaggi &rarr;</a>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section id="scatti">
+  <div class="section-head wrap reveal">
+    <div>
+      <span class="tag mono">Portfolio</span>
+      <h2>Frammenti di viaggio</h2>
+    </div>
+    <p>Immagini, dettagli e atmosfere raccolte lungo la strada. Frammenti di luoghi vissuti e ricordi da conservare.</p>
+  </div>
+  <div class="gallery wrap reveal">
+    <div class="accordion">
+      <div class="acc-item"><span class="acc-index">01</span><img src="images/gallery-plitvice.jpg" alt="Vista dall'alto su un canyon con laghi turchesi e una passerella di legno tra la vegetazione"></div>
+      <div class="acc-item"><span class="acc-index">02</span><img src="images/gallery-sorano.jpg" alt="Borgo medievale su uno sperone di roccia illuminato dalla luce dorata del tramonto"></div>
+      <div class="acc-item"><span class="acc-index">03</span><img src="images/gallery-shell.jpg" alt="Conchiglia arancione sulla sabbia bagnata, tra la schiuma delle onde"></div>
+      <div class="acc-item"><span class="acc-index">04</span><img src="images/gallery-harbor-sunset.jpg" alt="Barche da pesca ormeggiate in un porto al tramonto"></div>
+      <div class="acc-item"><span class="acc-index">05</span><img src="images/gallery-alpine-lake.jpg" alt="Fiume dalle acque turchesi tra le montagne"></div>
+      <div class="acc-item"><span class="acc-index">06</span><img src="images/gallery-street-art.jpg" alt="Murale di street art con un cuore rosso e farfalle sopra una figura seduta"></div>
+      <div class="acc-item"><span class="acc-index">07</span><img src="images/gallery-tower-sky.jpg" alt="Vista dal basso verso l'alto di una torre in pietra che si apre sul cielo azzurro"></div>
+      <div class="acc-item"><span class="acc-index">08</span><img src="images/gallery-mountain-sunset.jpg" alt="Tramonto dietro le nuvole sopra una collina, con la nebbia che sale dalla valle"></div>
+    </div>
+  </div>
+</section>
+
+<!-- SCHIZZI DI VIAGGIO -->
+<section id="schizzi">
+  <div class="section-head wrap reveal">
+    <div>
+      <span class="tag mono">Illustrazioni</span>
+      <h2>Schizzi di viaggio</h2>
+    </div>
+    <p>Piccole cartoline illustrate dei luoghi pi&ugrave; belli in cui siamo stati.</p>
+  </div>
+  <div class="sketches wrap reveal">
+    <div class="sketch-grid">
+      <div class="sketch-card">
+        <img src="images/sketch-coron.jpg" alt="Illustrazione ad acquerello della laguna di Coron tra le rocce calcaree, con le barche ormeggiate">
+        <div class="sketch-cap">
+          <span class="name">Kayangan Lake &mdash; Coron Island</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NUMBERS -->
+<section id="guide">
+  <div class="section-head wrap reveal">
+    <div>
+      <span class="tag mono">In cifre</span>
+      <h2>I numeri dei viaggi</h2>
+    </div>
+    <p>Km percorsi, mezzi presi, notti fuori casa &mdash; ogni viaggio raccontato anche con i numeri.</p>
+  </div>
+  <div class="guides wrap reveal">
+    <div class="tag-row">
+
+      <div class="stat-card">
+        <div class="stat-card-country">Francia</div>
+        <span class="stat-card-period mono">8&ndash;16 Ago 2024</span>
+        <div class="stat-row">In auto<b>2.500 km</b></div>
+        <div class="stat-row">Notti fuori casa<b>8</b></div>
+        <div class="stat-row">Tappe<b>4</b></div>
+        <div class="stat-dishes">
+          <span class="stat-dishes-label">Piatti assaggiati</span>
+          <div class="dish-pills">
+            <span class="dish-pill">Galette</span>
+            <span class="dish-pill">Pain au chocolat</span>
+            <span class="dish-pill">Raclette</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-card-country">Belgio</div>
+        <span class="stat-card-period mono">28 Feb&ndash;3 Mar 2025</span>
+        <div class="stat-row">Voli presi<b>2</b></div>
+        <div class="stat-row">A piedi<b>50 km</b></div>
+        <div class="stat-row">Notti fuori casa<b>3</b></div>
+        <div class="stat-row">Tappe<b>2</b></div>
+        <div class="stat-dishes">
+          <span class="stat-dishes-label">Piatti assaggiati</span>
+          <div class="dish-pills">
+            <span class="dish-pill">Frites</span>
+            <span class="dish-pill">Carbonade flamande</span>
+            <span class="dish-pill">Moules frites</span>
+            <span class="dish-pill">Gaufre</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-card-country">Filippine</div>
+        <span class="stat-card-period mono">23 Apr&ndash;10 Mag 2026</span>
+        <div class="stat-row">In aereo<b>25.000 km</b></div>
+        <div class="stat-row">Voli presi<b>10</b></div>
+        <div class="stat-row">In motorino<b>212 km</b></div>
+        <div class="stat-row">In barca<b>240 km</b></div>
+        <div class="stat-row">Notti fuori casa<b>17</b></div>
+        <div class="stat-dishes">
+          <span class="stat-dishes-label">Piatti assaggiati</span>
+          <div class="dish-pills">
+            <span class="dish-pill">Palitaw</span>
+            <span class="dish-pill">Adobo</span>
+            <span class="dish-pill">Halo halo</span>
+            <span class="dish-pill">Lumpia</span>
+            <span class="dish-pill">Banana turon</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<footer>
+  <div class="wrap">
+    <div class="foot-brand">ALTROVE</div>
+    <div class="foot-links">
+      <a href="viaggi.html">Viaggi</a>
+      <a href="mappa.html">Mappa</a>
+      <a href="diario.html">Diario</a>
+      <a href="index.html#scatti">Scatti</a>
+      <a href="index.html#schizzi">Schizzi</a>
+      <a href="index.html#guide">Numeri</a>
+    </div>
+    <div class="foot-coords">&copy; 2026 Altrove &mdash; scritto da chi non sta mai fermo</div>
+  </div>
+</footer>
+
+<script>
+  // Header solidifies on scroll (only relevant on pages with a full-bleed hero)
+  const header = document.getElementById('siteHeader');
+  const heroImg = document.getElementById('heroImg');
+  if(heroImg){
+    window.addEventListener('scroll', () => {
+      header.classList.toggle('solid', window.scrollY > 40);
+    });
+  }
+
+  // Subtle hero parallax (only on pages that have a hero image)
+  if(heroImg){
+    window.addEventListener('scroll', () => {
+      const y = window.scrollY;
+      if(y < window.innerHeight){
+        heroImg.style.transform = `translateY(${y * 0.18}px)`;
+      }
+    });
+  }
+
+  // Reveal on scroll
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting){
+        entry.target.classList.add('in');
+        io.unobserve(entry.target);
+      }
+    });
+  }, {threshold:0.12});
+  revealEls.forEach(el => io.observe(el));
+
+  // Respect reduced motion
+  if(window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+    revealEls.forEach(el => el.classList.add('in'));
+  }
+</script>
+</body>
+</html>
