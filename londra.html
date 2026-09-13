@@ -435,11 +435,11 @@
 
   /* day stops: one photo slot per tappa effettivamente visitata, non un numero fisso */
   .day-stops{
-    display:grid; grid-template-columns:repeat(auto-fill, minmax(150px,1fr)); gap:20px;
+    display:grid; grid-template-columns:repeat(auto-fill, minmax(240px,1fr)); gap:24px;
   }
-  .day-stop-photo{aspect-ratio:4/3;}
-  .day-stop-photo .slot-label{font-size:0.6rem;}
-  .day-stop-name{margin-top:10px; font-size:0.85rem; color:var(--ivory); text-align:center; line-height:1.4;}
+  .day-stop-photo{aspect-ratio:3/2;}
+  .day-stop-photo .slot-label{font-size:0.68rem;}
+  .day-stop-name{margin-top:12px; font-size:0.95rem; color:var(--ivory); text-align:center; line-height:1.4;}
   @media(max-width:600px){ .info-note-grid{grid-template-columns:1fr;} .info-note-grid div{border-top:1px dashed var(--line); padding-top:10px;} .info-note-grid div:nth-child(2){border-top:1px dashed var(--line); padding-top:10px;} }
 </style>
 <body>
