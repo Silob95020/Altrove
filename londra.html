@@ -432,6 +432,14 @@
   }
   .day-block li::before{content:'&mdash;'; position:absolute; left:0; color:var(--ochre-dim);}
   .day-block.empty{color:var(--ivory-dim); font-size:0.9rem; font-style:italic;}
+
+  /* day stops: one photo slot per tappa effettivamente visitata, non un numero fisso */
+  .day-stops{
+    display:grid; grid-template-columns:repeat(auto-fill, minmax(150px,1fr)); gap:20px;
+  }
+  .day-stop-photo{aspect-ratio:4/3;}
+  .day-stop-photo .slot-label{font-size:0.6rem;}
+  .day-stop-name{margin-top:10px; font-size:0.85rem; color:var(--ivory); text-align:center; line-height:1.4;}
   @media(max-width:600px){ .info-note-grid{grid-template-columns:1fr;} .info-note-grid div{border-top:1px dashed var(--line); padding-top:10px;} .info-note-grid div:nth-child(2){border-top:1px dashed var(--line); padding-top:10px;} }
 </style>
 <body>
@@ -461,36 +469,87 @@
 <section id="londra">
   <div class="wrap">
 
-    <div class="day-block">
-      <span class="day-label mono">Giorno 1</span>
-      <ul>
-        <li>Buckingham Palace</li>
-        <li>Notting Hill e Portobello Road</li>
-        <li>Holland Park e Kyoto Garden</li>
-        <li>Little Venice</li>
-        <li>Piccadilly Circus</li>
-        <li>Trafalgar Square</li>
-      </ul>
+    <div class="img-slot guide-cover reveal">
+      <span class="slot-label">Immagine da inserire</span>
+      <span class="slot-file">londra-cover.jpg</span>
     </div>
 
-    <div class="day-block empty">
-      <span class="day-label mono">Giorno 2</span>
-      Da raccontare.
+    <div class="guide-head reveal">
+      <div>
+        <span class="guide-eyebrow mono">Guida pratica</span>
+        <h3>Londra, giorno per giorno</h3>
+        <span class="guide-region mono">Inghilterra</span>
+      </div>
+      <div class="guide-stats">
+        <div>Giorni<b>5</b></div>
+        <div>Notti<b>4</b></div>
+        <div>Periodo<b>2&ndash;6 Ago</b></div>
+      </div>
     </div>
 
-    <div class="day-block empty">
-      <span class="day-label mono">Giorno 3</span>
-      Da raccontare.
-    </div>
+    <div class="guide-grid">
+      <div class="guide-main">
 
-    <div class="day-block empty">
-      <span class="day-label mono">Giorno 4</span>
-      Da raccontare.
-    </div>
+        <div class="day-block reveal">
+          <span class="day-label mono">Giorno 1</span>
+          <div class="day-stops">
+            <div class="day-stop">
+              <div class="img-slot day-stop-photo"><span class="slot-label">Foto</span></div>
+              <div class="day-stop-name">Buckingham Palace</div>
+            </div>
+            <div class="day-stop">
+              <div class="img-slot day-stop-photo"><span class="slot-label">Foto</span></div>
+              <div class="day-stop-name">Notting Hill e Portobello Road</div>
+            </div>
+            <div class="day-stop">
+              <div class="img-slot day-stop-photo"><span class="slot-label">Foto</span></div>
+              <div class="day-stop-name">Holland Park e Kyoto Garden</div>
+            </div>
+            <div class="day-stop">
+              <div class="img-slot day-stop-photo"><span class="slot-label">Foto</span></div>
+              <div class="day-stop-name">Little Venice</div>
+            </div>
+            <div class="day-stop">
+              <div class="img-slot day-stop-photo"><span class="slot-label">Foto</span></div>
+              <div class="day-stop-name">Piccadilly Circus</div>
+            </div>
+            <div class="day-stop">
+              <div class="img-slot day-stop-photo"><span class="slot-label">Foto</span></div>
+              <div class="day-stop-name">Trafalgar Square</div>
+            </div>
+          </div>
+        </div>
 
-    <div class="day-block empty">
-      <span class="day-label mono">Giorno 5</span>
-      Da raccontare.
+        <div class="day-block empty reveal">
+          <span class="day-label mono">Giorno 2</span>
+          Da raccontare.
+        </div>
+
+        <div class="day-block empty reveal">
+          <span class="day-label mono">Giorno 3</span>
+          Da raccontare.
+        </div>
+
+        <div class="day-block empty reveal">
+          <span class="day-label mono">Giorno 4</span>
+          Da raccontare.
+        </div>
+
+        <div class="day-block empty reveal">
+          <span class="day-label mono">Giorno 5</span>
+          Da raccontare.
+        </div>
+
+      </div>
+
+      <div class="guide-side">
+        <div class="stay-list">
+          <span class="guide-section-title mono">Dove dormire</span>
+        </div>
+        <div class="eat-list">
+          <span class="guide-section-title mono">Dove mangiare</span>
+        </div>
+      </div>
     </div>
 
   </div>
